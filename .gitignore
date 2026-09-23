@@ -1,0 +1,13 @@
+# Tool-generated folders
+/work/
+/xsim.dir/
+/.Xil/
+
+# Log and journal files
+*.log
+*.jou
+*.pb
+*.wdb
+*.vcd
+*.db_info
+*.flock
