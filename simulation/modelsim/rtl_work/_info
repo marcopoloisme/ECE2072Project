@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/simulation/modelsim
+vmux_10_to_1
+Z1 !s110 1790122915
+!i10b 1
+!s100 GOK[c4D>;<akOn][LB<4S0
+IQziB48Bk=8bzk>7Tg:NDd2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1790122848
+8C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v
+FC:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1790122914.000000
+!s107 C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project|C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v|
+!i113 1
+Z4 o-vlog01compat -work work
+Z5 !s92 -vlog01compat -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project
+Z6 tCvgOpt 0
+vmux_10_to_1_tb
+R1
+!i10b 1
+!s100 AF[cI7HhQZP<8?lPV1Pf?0
+IV4OfZ4kTYe>5=RghA2AXP3
+R2
+R0
+w1790122278
+8C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v
+FC:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1790122915.000000
+!s107 C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project|C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v|
+!i113 1
+R4
+R5
+R6

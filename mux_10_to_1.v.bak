@@ -1,0 +1,31 @@
+module mux_10_to_1 (
+    wire A0 [15:0], //registor 0 
+    wire A1 [15:0], //registor 1
+    wire A2 [15:0], //..
+	 wire A3 [15:0], 
+	 wire A4 [15:0],
+	 wire A5 [15:0],
+	 wire A6 [15:0],
+	 wire A7 [15:0],//registor 7
+	 wire G [15:0], //registor G
+	 wire DIN [15:0], //sign extended DIN
+	 wire sel[3:0], // selection
+    output reg result [15:0] //output
+);
+
+    always @(sel) begin
+        case (sel)
+            4'd0  :  result = A0;
+            4'd1  :  result = A1;
+            4'd2  :  result = A2;
+            4'd3  :  result = A3;
+				4'd4  :  result = A4;
+				4'd5  :  result = A5;
+				4'd6  :  result = A6;
+				4'd7  :  result = A7;
+				4'd8  :  result = G;
+				4'd9  :  result = DIN;
+				default : result = result^4'd0
+        endcase
+    end
+endmodule

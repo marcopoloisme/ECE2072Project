@@ -1,0 +1,26 @@
+module mux_10_to_1_testbench (
+    wire A0 [15:0], //registor 0 
+    wire A1 [15:0], //registor 1
+    wire A2 [15:0], //..
+	 wire A3 [15:0], 
+	 wire A4 [15:0],
+	 wire A5 [15:0],
+	 wire A6 [15:0],
+	 wire A7 [15:0],//registor 7
+	 wire G [15:0], //registor G
+	 wire DIN [15:0], //sign extended DIN
+	 wire sel[3:0], // selection
+    output result [15:0] //output
+);
+
+module 2_to_1_testbench(
+	wire I0 [15:0]; // input 1
+	wire I1 [15:0]; // input 2
+	wire sel; // selection
+	output result[15:0]
+)
+
+	assign result= (I0&~sel)|(I1&sel);
+	
+endmodule
+
