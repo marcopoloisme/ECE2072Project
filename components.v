@@ -29,18 +29,18 @@ module tick_FSM(rst, clk, enable, tick);
 endmodule
 
 module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
-    wire [15:0] R0, //registor 0 
-    wire [15:0] R1, //registor 1
-    wire [15:0] R2, //..
-	 wire [15:0] R3, 
-	 wire [15:0] R4,
-	 wire [15:0] R5,
-	 wire [15:0] R6,
-	 wire [15:0] R7,//registor 7
-	 wire [15:0] G, //registor G
-	 wire [15:0] SignExtDIN, //sign extended DIN
-	 wire [3:0] sel, // selection
-    reg  [15:0] result //output
+    input wire [15:0] R0; //registor 0 
+    input wire [15:0] R1; //registor 1
+    input wire [15:0] R2; //..
+	 input wire [15:0] R3;
+	 input wire [15:0] R4;
+	 input wire [15:0] R5;
+	 input wire [15:0] R6;
+	 input wire [15:0] R7;//registor 7
+	 input wire [15:0] G; //registor G
+	 input wire [15:0] SignExtDIN; //sign extended DIN
+	 input wire [3:0]  sel;// selection
+    output reg  [15:0] result; //output
 
 
     always @(*) begin
@@ -83,22 +83,19 @@ module register_n(data_in, r_in, clk, Q, rst);
 	
 	parameter N = 16;
 
-	/* 
-	 * This module implements registers that will be used in the processor.
-	 */
-	// TODO: Declare inputs, outputs, and parameter:
-	input [N:0] data_in,
-	input r_in,
-	input clk,
-	input rst
-	output Q
+
+	input wire [N-1:0] data_in;
+	input wire r_in;
+	input wire clk;
+	input wire rst;
+	output wire [N-1:0] Q;
 	
 	always @(posedge clk) begin 
-		if rst begin
-		Q = N'd0
+		if (rst) begin
+		Q <= 'd0;
 		end 
-		if r_in begin
-		Q = data_in
+		else if (r_in) begin
+		Q <= data_in;
 		end
+	end
 endmodule
-

@@ -1,0 +1,10 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -sv -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n_tb.v}
+vlog -sv -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v}
+

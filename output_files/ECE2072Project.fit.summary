@@ -1,15 +1,15 @@
-Fitter Status : Successful - Wed Sep 23 10:09:34 2026
+Fitter Status : Successful - Wed Sep 23 13:18:14 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ECE2072Project
-Top-level Entity Name : mux_10_to_1
+Top-level Entity Name : register_n
 Family : MAX 10
 Device : 10M08DAF484C8G
 Timing Models : Final
-Total logic elements : 115 / 8,064 ( 1 % )
-    Total combinational functions : 115 / 8,064 ( 1 % )
-    Dedicated logic registers : 0 / 8,064 ( 0 % )
-Total registers : 0
-Total pins : 180 / 250 ( 72 % )
+Total logic elements : 18 / 8,064 ( < 1 % )
+    Total combinational functions : 18 / 8,064 ( < 1 % )
+    Dedicated logic registers : 16 / 8,064 ( < 1 % )
+Total registers : 16
+Total pins : 35 / 250 ( 14 % )
 Total virtual pins : 0
 Total memory bits : 0 / 387,072 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 48 ( 0 % )

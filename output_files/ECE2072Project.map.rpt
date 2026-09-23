@@ -1,5 +1,5 @@
-Analysis & Synthesis report for ECE2072Project
-Wed Sep 23 10:47:55 2026
+Analysis & Elaboration report for ECE2072Project
+Wed Sep 23 13:18:45 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -7,10 +7,11 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Parameter Settings for User Entity Instance: Top-level Entity: |register_n
+  5. Analysis & Elaboration Settings
+  6. Analysis & Elaboration Messages
 
 
 
@@ -34,12 +35,12 @@ refer to the applicable agreement for further details.
 
 
 +----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
+; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Sep 23 10:47:55 2026           ;
+; Analysis & Elaboration Status      ; Successful - Wed Sep 23 13:18:45 2026       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ECE2072Project                              ;
-; Top-level Entity Name              ; mux_10_to_1_tb                              ;
+; Top-level Entity Name              ; register_n                                  ;
 ; Family                             ; MAX 10                                      ;
 ; Total logic elements               ; N/A until Partition Merge                   ;
 ;     Total combinational functions  ; N/A until Partition Merge                   ;
@@ -55,14 +56,42 @@ refer to the applicable agreement for further details.
 +------------------------------------+---------------------------------------------+
 
 
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |register_n ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; N              ; 16    ; Signed Integer                                    ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                              ;
+; Analysis & Elaboration Settings                                                                            ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; 10M08DAF484C8G     ;                    ;
-; Top-level entity name                                            ; mux_10_to_1_tb     ; ECE2072Project     ;
+; Top-level entity name                                            ; register_n         ; ECE2072Project     ;
 ; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Verilog Show LMF Mapping Messages                                ; Off                ;                    ;
+; Verilog Version                                                  ; SystemVerilog_2005 ; Verilog_2001       ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                      ; Off                ; Off                ;
@@ -70,7 +99,6 @@ refer to the applicable agreement for further details.
 ; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
 ; Preserve fewer node names                                        ; On                 ; On                 ;
 ; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
-; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
 ; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
 ; State Machine Processing                                         ; Auto               ; Auto               ;
 ; Safe State Machine                                               ; Off                ; Off                ;
@@ -141,56 +169,25 @@ refer to the applicable agreement for further details.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
+Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Sep 23 10:47:45 2026
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ECE2072Project -c ECE2072Project
+    Info: Processing started: Wed Sep 23 13:18:34 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ECE2072Project -c ECE2072Project --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Error (10170): Verilog HDL syntax error at proc_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/proc_tb.v Line: 9
-Info (12021): Found 0 design units, including 0 entities, in source file proc_tb.v
-Error (10170): Verilog HDL syntax error at proc_extension_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/proc_extension_tb.v Line: 9
-Info (12021): Found 0 design units, including 0 entities, in source file proc_extension_tb.v
-Info (12021): Found 0 design units, including 0 entities, in source file proc_extension.v
-Error (10170): Verilog HDL syntax error at proc.v(31) near text: ")";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/proc.v Line: 31
-Error (10112): Ignored design unit "simple_proc" at proc.v(8) due to previous errors File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/proc.v Line: 8
-Info (12021): Found 0 design units, including 0 entities, in source file proc.v
-Error (10170): Verilog HDL syntax error at components_tb.v(10) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components_tb.v Line: 10
-Info (12021): Found 0 design units, including 0 entities, in source file components_tb.v
-Error (10170): Verilog HDL syntax error at components.v(33) near text: "wire";  expecting an identifier ("wire" is a reserved keyword ). Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components.v Line: 33
-Error (10112): Ignored design unit "multiplexer" at components.v(31) due to previous errors File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components.v Line: 31
-Error (10112): Ignored design unit "ALU" at components.v(64) due to previous errors File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components.v Line: 64
-Error (10170): Verilog HDL syntax error at components.v(86) near text: "parameter";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components.v Line: 86
-Error (10112): Ignored design unit "register_n" at components.v(76) due to previous errors File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/components.v Line: 76
-Info (12021): Found 0 design units, including 0 entities, in source file components.v
-Info (12021): Found 1 design units, including 1 entities, in source file mux_10_to_1.v
-    Info (12023): Found entity 1: mux_10_to_1 File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file mux_10_to_1_tb.v
-    Info (12023): Found entity 1: mux_10_to_1_tb File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v Line: 1
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 10 errors, 1 warning
-    Error: Peak virtual memory: 4716 megabytes
-    Error: Processing ended: Wed Sep 23 10:47:55 2026
-    Error: Elapsed time: 00:00:10
-    Error: Total CPU time (on all processors): 00:00:24
+Info (12021): Found 1 design units, including 1 entities, in source file register_n_tb.v
+    Info (12023): Found entity 1: register_n_tb File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file register_n.v
+    Info (12023): Found entity 1: register_n File: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v Line: 1
+Info (12127): Elaborating entity "register_n" for the top level hierarchy
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4720 megabytes
+    Info: Processing ended: Wed Sep 23 13:18:45 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:25
 
 

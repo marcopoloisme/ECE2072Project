@@ -10,66 +10,17 @@
 # Copying C:/intelFPGA_lite/modelsim_ae/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v}
+# vlog -sv -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:21:54 on Sep 23,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project" C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1.v 
-# -- Compiling module mux_10_to_1
-# 
-# Top level modules:
-# 	mux_10_to_1
-# End time: 10:21:55 on Sep 23,2026, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:21:55 on Sep 23,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project" C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v 
-# -- Compiling module mux_10_to_1_tb
-# 
-# Top level modules:
-# 	mux_10_to_1_tb
-# End time: 10:21:55 on Sep 23,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-vsim work.mux_10_to_1_tb
-# vsim work.mux_10_to_1_tb 
-# Start time: 10:21:58 on Sep 23,2026
-# //  ModelSim - Intel FPGA Edition 10.5b Oct  5 2016
-# //
-# //  Copyright 1991-2016 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  ModelSim - Intel FPGA Edition and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading work.mux_10_to_1_tb
-# Loading work.mux_10_to_1
-run -all
-# [PASS] sel =  0 (4'b0000) | Output = 0x0000 | Expected = 0x0000
-# [PASS] sel =  1 (4'b0001) | Output = 0x1111 | Expected = 0x1111
-# [PASS] sel =  2 (4'b0010) | Output = 0x2222 | Expected = 0x2222
-# [PASS] sel =  3 (4'b0011) | Output = 0x3333 | Expected = 0x3333
-# [PASS] sel =  4 (4'b0100) | Output = 0x4444 | Expected = 0x4444
-# [PASS] sel =  5 (4'b0101) | Output = 0x5555 | Expected = 0x5555
-# [PASS] sel =  6 (4'b0110) | Output = 0x6666 | Expected = 0x6666
-# [PASS] sel =  7 (4'b0111) | Output = 0x7777 | Expected = 0x7777
-# [PASS] sel =  8 (4'b1000) | Output = 0x8888 | Expected = 0x8888
-# [PASS] sel =  9 (4'b1001) | Output = 0x9999 | Expected = 0x9999
-# [PASS] sel = 10 (4'b1010) | Default case handled properly (Output = 0xxxxx)
-# [PASS] sel = 11 (4'b1011) | Default case handled properly (Output = 0xxxxx)
-# [PASS] sel = 12 (4'b1100) | Default case handled properly (Output = 0xxxxx)
-# [PASS] sel = 13 (4'b1101) | Default case handled properly (Output = 0xxxxx)
-# [PASS] sel = 14 (4'b1110) | Default case handled properly (Output = 0xxxxx)
-# [PASS] sel = 15 (4'b1111) | Default case handled properly (Output = 0xxxxx)
-# --------------------------------------------------
-#  Verification Complete: 16 Passed, 0 Failed
-# --------------------------------------------------
-# ** Note: $finish    : C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/mux_10_to_1_tb.v(73)
-#    Time: 160 ps  Iteration: 0  Instance: /mux_10_to_1_tb
-# End time: 10:22:15 on Sep 23,2026, Elapsed time: 0:00:17
-# Errors: 0, Warnings: 0
+# Start time: 13:21:57 on Sep 23,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project" C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v 
+# -- Compiling module register_n
+# ** Error: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v(23): (vlog-2110) Illegal reference to net "Q".
+# ** Error: C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v(26): (vlog-2110) Illegal reference to net "Q".
+# End time: 13:21:57 on Sep 23,2026, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: C:/intelFPGA_lite/modelsim_ae/win32aloem/vlog failed.
+# Error in macro ./ECE2072Project_run_msim_rtl_verilog.do line 8
+# C:/intelFPGA_lite/modelsim_ae/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work work +incdir+C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project {C:/Users/Exam/Desktop/uni/2026/ECE2072/Ece2072Project/register_n.v}"
