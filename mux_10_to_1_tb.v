@@ -1,5 +1,5 @@
 module mux_10_to_1_tb;
-	reg [15:0] A0,A1,A2,A3,A4,A5,A6,A7,G,DIN;
+	reg [15:0] R0,R1,R2,R3,R4,R5,R6,R7,G,SignExtDIN;
 	reg [3:0] sel;
 	wire [15:0] result;
 
@@ -10,9 +10,9 @@ module mux_10_to_1_tb;
 	
 	
 	mux_10_to_1 dut (
-			.A0(A0), .A1(A1), .A2(A2), .A3(A3),
-         .A4(A4), .A5(A5), .A6(A6), .A7(A7),
-         .G(G),   .DIN(DIN),
+			.R0(R0), .R1(R1), .R2(R2), .R3(R3),
+         .R4(R4), .R5(R5), .R6(R6), .R7(R7),
+         .G(G),   .SignExtDIN(SignExtDIN),
          .sel(sel),
          .result(result)
     );
@@ -23,16 +23,16 @@ module mux_10_to_1_tb;
 		fail = 0;
 		i = 0;
 	
-		A0  = 16'h0000;  expectedArray[0] = A0;
-      A1  = 16'h1111;  expectedArray[1] = A1;
-      A2  = 16'h2222;  expectedArray[2] = A2;
-      A3  = 16'h3333;  expectedArray[3] = A3;
-      A4  = 16'h4444;  expectedArray[4] = A4;
-      A5  = 16'h5555;  expectedArray[5] = A5;
-      A6  = 16'h6666;  expectedArray[6] = A6;
-      A7  = 16'h7777;  expectedArray[7] = A7;
+		R0  = 16'h0000;  expectedArray[0] = R0;
+      R1  = 16'h1111;  expectedArray[1] = R1;
+      R2  = 16'h2222;  expectedArray[2] = R2;
+      R3  = 16'h3333;  expectedArray[3] = R3;
+      R4  = 16'h4444;  expectedArray[4] = R4;
+      R5  = 16'h5555;  expectedArray[5] = R5;
+      R6  = 16'h6666;  expectedArray[6] = R6;
+      R7  = 16'h7777;  expectedArray[7] = R7;
       G   = 16'h8888;  expectedArray[8] = G;
-      DIN = 16'h9999;  expectedArray[9] = DIN;
+      SignExtDIN = 16'h9999;  expectedArray[9] = SignExtDIN;
 		
 	for (i = 0; i < 16; i = i + 1) begin
             sel = i[3:0];
