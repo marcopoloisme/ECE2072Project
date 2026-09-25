@@ -1,5 +1,5 @@
 Flow report for ECE2072Project
-Wed Sep 23 13:18:45 2026
+Fri Sep 25 20:57:23 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,10 +40,10 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Sep 23 13:18:45 2026       ;
+; Flow Status                        ; Successful - Fri Sep 25 20:57:23 2026       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ECE2072Project                              ;
-; Top-level Entity Name              ; register_n                                  ;
+; Top-level Entity Name              ; register_n_tb                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08DAF484C8G                              ;
 ; Timing Models                      ; Final                                       ;
@@ -66,32 +66,39 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/23/2026 13:18:35 ;
+; Start date & time ; 09/25/2026 20:57:14 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ECE2072Project      ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                             ;
-+-------------------------------------+----------------------------------------+----------------+-------------+----------------+
-; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name ; Section Id     ;
-+-------------------------------------+----------------------------------------+----------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 154239763376217.179013351515012        ; --             ; --          ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --             ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>         ; --          ; --             ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --             ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --             ; --          ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --             ; register_n  ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --             ; register_n  ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --             ; register_n  ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --             ; --          ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --             ; --          ; --             ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --             ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; register_n                             ; ECE2072Project ; --          ; --             ;
-; VERILOG_INPUT_VERSION               ; SystemVerilog_2005                     ; Verilog_2001   ; --          ; --             ;
-; VERILOG_SHOW_LMF_MAPPING_MESSAGES   ; Off                                    ; --             ; --          ; --             ;
-+-------------------------------------+----------------------------------------+----------------+-------------+----------------+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                ;
++--------------------------------------+----------------------------------------+----------------+---------------+----------------+
+; Assignment Name                      ; Value                                  ; Default Value  ; Entity Name   ; Section Id     ;
++--------------------------------------+----------------------------------------+----------------+---------------+----------------+
+; COMPILER_SIGNATURE_ID                ; 255736391763711.179033383403520        ; --             ; --            ; --             ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --             ; --            ; register_n_tb  ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; register_n_tb                          ; --             ; --            ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --             ; --            ; eda_simulation ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>         ; --            ; --             ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --             ; --            ; eda_simulation ;
+; EDA_TEST_BENCH_FILE                  ; register_n_tb.v                        ; --             ; --            ; register_n_tb  ;
+; EDA_TEST_BENCH_MODULE_NAME           ; register_n_tb                          ; --             ; --            ; register_n_tb  ;
+; EDA_TEST_BENCH_NAME                  ; register_n_tb                          ; --             ; --            ; eda_simulation ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --             ; --            ; eda_simulation ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --             ; --            ; --             ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --             ; --            ; --             ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --             ; register_n_tb ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --             ; register_n_tb ; Top            ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --             ; register_n_tb ; Top            ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --             ; --            ; --             ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --             ; --            ; --             ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --             ; --            ; --             ;
+; TOP_LEVEL_ENTITY                     ; register_n_tb                          ; ECE2072Project ; --            ; --             ;
+; VERILOG_INPUT_VERSION                ; SystemVerilog_2005                     ; Verilog_2001   ; --            ; --             ;
+; VERILOG_SHOW_LMF_MAPPING_MESSAGES    ; Off                                    ; --             ; --            ; --             ;
++--------------------------------------+----------------------------------------+----------------+---------------+----------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------+
@@ -99,8 +106,8 @@ refer to the applicable agreement for further details.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:11     ; 1.0                     ; 4720 MB             ; 00:00:25                           ;
-; Total                  ; 00:00:11     ; --                      ; --                  ; 00:00:25                           ;
+; Analysis & Elaboration ; 00:00:10     ; 1.0                     ; 4720 MB             ; 00:00:20                           ;
+; Total                  ; 00:00:10     ; --                      ; --                  ; 00:00:20                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -109,7 +116,7 @@ refer to the applicable agreement for further details.
 +------------------------+------------------+------------+------------+----------------+
 ; Module Name            ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +------------------------+------------------+------------+------------+----------------+
-; Analysis & Elaboration ; DESKTOP-3E9KQ6U  ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Elaboration ; mvm_laptop       ; Windows 10 ; 10.0       ; x86_64         ;
 +------------------------+------------------+------------+------------+----------------+
 
 

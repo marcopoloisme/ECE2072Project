@@ -16,7 +16,7 @@ module register_n(data_in, r_in, clk, Q, rst);
 	input wire r_in;
 	input wire clk;
 	input wire rst;
-	output reg [N-1:0] Q;
+	output wire [N-1:0] Q;
 	
 	always @(posedge clk) begin 
 		if (rst) begin

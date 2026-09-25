@@ -1,7 +1,7 @@
-Analysis & Elaboration Status : Successful - Wed Sep 23 13:18:45 2026
+Analysis & Elaboration Status : Successful - Fri Sep 25 20:57:23 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ECE2072Project
-Top-level Entity Name : register_n
+Top-level Entity Name : register_n_tb
 Family : MAX 10
 Total logic elements : N/A until Partition Merge
     Total combinational functions : N/A until Partition Merge
