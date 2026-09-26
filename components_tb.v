@@ -92,7 +92,7 @@ module components_tb.v;
         
         #(CLK_PERIOD * 2);
         $display("--------------------------------------------");
-        $display("Testbench Completed Successfully.");
+        $display(" Register Testbench Completed Successfully.");
         $display("--------------------------------------------");
         $finish;
     end
@@ -166,7 +166,7 @@ module components_tb.v;
 
         // Final Verification Summary
         $display("--------------------------------------------------");
-        $display(" Verification Complete: %0d Passed, %0d Failed", pass, fail);
+        $display(" mux 10 to 1: Verification Complete: %0d Passed, %0d Failed", pass, fail);
         $display("--------------------------------------------------");
 
         $finish;
