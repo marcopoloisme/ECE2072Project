@@ -16,14 +16,13 @@ endmodule
 
 
 module tick_FSM(rst, clk, enable, tick);
-	module tick_FSM(tick, enable, reset, clock);
     input enable;
-    input reset;
-    input clock;
+    input rst;
+    input clk;
     output reg [3:0] tick;
 
-    always @(posedge clock) begin
-        if (reset) begin
+    always @(posedge clk) begin
+        if (rst) begin
             tick <= 4'b0001;
         end
         else if (enable) begin
@@ -39,15 +38,39 @@ module tick_FSM(rst, clk, enable, tick);
 endmodule
 
 module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
-	/* 
-	 * This module takes 10 inputs and places the correct input onto the bus.
-	 */
-	// TODO: Declare inputs and outputs
-	
-	// TODO: implement logic
+    input  wire [15:0] SignExtDin;
+    input  wire [15:0] R0;
+    input  wire [15:0] R1;
+    input  wire [15:0] R2;
+    input  wire [15:0] R3;
+    input  wire [15:0] R4;
+    input  wire [15:0] R5;
+    input  wire [15:0] R6;
+    input  wire [15:0] R7;
+    input  wire [15:0] G;
+    input  wire [3:0]  sel;
+    output reg  [15:0] Bus;
 
+
+    always @(*) begin
+        case (sel)
+            4'd0: Bus = R0;
+            4'd1: Bus = R1;
+            4'd2: Bus = R2;
+            4'd3: Bus = R3;
+            4'd4: Bus = R4;
+            4'd5: Bus = R5;
+            4'd6: Bus = R6;
+            4'd7: Bus = R7;
+            4'd8: Bus = G;
+            4'd9: Bus = SignExtDin;
+            default: Bus = 16'hXXXX;
+        endcase
+    end
 
 endmodule
+
+
 
 module ALU (input_a, input_b, alu_op, result);
 	 input [15:0] input_a;
@@ -67,6 +90,7 @@ module ALU (input_a, input_b, alu_op, result);
 	 
 endmodule
 
+
 module register_n(data_in, r_in, clk, Q, rst);
 
 
@@ -74,14 +98,27 @@ module register_n(data_in, r_in, clk, Q, rst);
 	// register_n #(.N(num_bits)) reg_IR(.....), 
 	// where num_bits is how many bits you want to set N to
 	// and "..." is your usual input/output signals
-
+	
 	parameter N = 16;
 
 	/* 
 	 * This module implements registers that will be used in the processor.
 	 */
 	// TODO: Declare inputs, outputs, and parameter:
+	input wire [N-1:0] data_in;
+	input wire r_in;
+	input wire clk;
+	input wire rst;
+	output reg [N-1:0] Q;
 	
-	// TODO: Implement register logic:
-endmodule
+	always @(posedge clk) begin 
+		if (rst) begin
+		Q <= 'd0;
+		end 
+		else if (r_in) begin
+		Q <= data_in;
+		end
+	end
+endmodule 
+
 

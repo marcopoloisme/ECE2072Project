@@ -26,4 +26,4 @@ module register_n(data_in, r_in, clk, Q, rst);
 		Q <= data_in;
 		end
 	end
-endmodule
+endmodule 

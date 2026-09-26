@@ -8,11 +8,7 @@ Please enter your student ID:
 
 */
 module components_tb.v;
-    // TODO: Implement the logic of your testbench here
-
-endmodule
-
-module register_n_tb;
+//register testbench
 
 // Parameter definition
     parameter N = 16;
@@ -46,7 +42,7 @@ module register_n_tb;
         r_in    = 0;
         data_in = 0;
 
-$display("--------------------------------------------");
+		  $display("--------------------------------------------");
         $display("Starting Register Testbench...");
         $display("--------------------------------------------");
 
@@ -63,10 +59,9 @@ $display("--------------------------------------------");
         r_in    = 1;
         
         @(posedge clk);
-        #1; // Small delta delay to observe output after edge
+        #1; // Small delay
         $display("Write En=1, Data=0xA5A5. Q = 0x%0h (Expected: 0xA5A5)", Q);
 
-        //Hold Data with r_in Low (Write Disabled)
         @(posedge clk);
         data_in = 16'hFFFF;
         r_in    = 0;
@@ -75,7 +70,6 @@ $display("--------------------------------------------");
         #1;
         $display("Write En=0, Data=0xFFFF. Q = 0x%0h (Expected: 0xA5A5 - Unchanged)", Q);
 
-        //Overwrite with New Value
         @(posedge clk);
         data_in = 16'h1234;
         r_in    = 1;
@@ -84,7 +78,6 @@ $display("--------------------------------------------");
         #1;
         $display("Write En=1, Data=0x1234. Q = 0x%0h (Expected: 0x1234)", Q);
 
-        //Assert Reset during Write (Test Reset Priority)
         @(posedge clk);
         data_in = 16'h8888;
         r_in    = 1;
@@ -94,7 +87,6 @@ $display("--------------------------------------------");
         #1;
         $display("Reset & Write En active. Q = 0x%0h (Expected: 0x0 - Reset priority)", Q);
 
-        // Clean up
         rst  = 0;
         r_in = 0;
         
@@ -105,9 +97,7 @@ $display("--------------------------------------------");
         $finish;
     end
 
-endmodule
-
-module mux_10_to_1_tb;
+//mux 10 to 1 testbecnh 
 	reg [15:0] R0,R1,R2,R3,R4,R5,R6,R7,G,SignExtDIN;
 	reg [3:0] sel;
 	wire [15:0] result;
