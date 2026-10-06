@@ -6,23 +6,25 @@ This file contains Verilog code to implement individual components to be used in
 Please enter your name and student ID:
 
 */
-module sign_extend(in, ext);
-	input [8:0] in;
-	output [15:0] ext;
+//Sign extender code 
+module sign_extend(
+	input [8:0] in, //9 bit input received 
+	output [15:0] ext //processors data bus is 16 bit wide 
+);
 
-	assign ext = {{7{in[8]}}, in};
+	assign ext = {{7{in[8]}}, in}; //[15:9] will be the in[8] value repeated 7 times and then concatenation with the in. 
 endmodule
 
 
-
-module tick_FSM(rst, clk, enable, tick);
-    input enable;
-    input rst;
-    input clk;
-    output reg [3:0] tick;
-
-    always @(posedge clk) begin
-        if (rst) begin
+//Tick counter code 
+module tick_FSM(
+    input enable,
+    input rst,
+    input clk,
+    output reg [3:0] tick
+)
+	always @(posedge clk) begin //clock ticking 
+		if (rst) begin //check the reset value first, if reset = 1 then set tick to 0001. 
             tick <= 4'b0001;
         end
         else if (enable) begin
@@ -31,7 +33,7 @@ module tick_FSM(rst, clk, enable, tick);
                 4'b0010: tick <= 4'b0100;
                 4'b0100: tick <= 4'b1000;
                 4'b1000: tick <= 4'b0001;
-                default: tick <= 4'b0001;
+                default: tick <= 4'b0001; //if the tick is an invalid value, it will revert it back to 0001, safety case. 
             endcase
         end
     end
@@ -70,25 +72,36 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 
 endmodule
 
+//ALU code: 
+
+module ALU(
+	input [15:0] input_a,
+	input [15:0] input_b,
+	input [2:0] alu_op,
+    output reg [15:0] result
+); 
+	always @(*)begin 
 
 
-module ALU (input_a, input_b, alu_op, result);
-	 input [15:0] input_a;
-    input [15:0] input_b;
-    input [2:0] alu_op;
-    output reg [15:0] result;
-	 always @(*)begin 
-	 case (alu_op)
+      case (alu_op)
             3'b000: result = input_a * input_b;
             3'b001: result = input_a + input_b;
             3'b010: result = input_a - input_b;
-            3'b011: result = $signed(input_b) >>> $signed(input_a);
+            3'b011: 
+				if((input_a[15])) //so if the MSB of a = 1, negative number 
+                result = input_b>>-$signed(input_a); //input b will be right shifted by the positive value of whatever a is. 
+                else 
+                result = input_b<<input_a; //if it is a positive value MSB = 0, then left shift. 
 
-            default: result = 16'b0;
+            default: result = 16'b0; //safety result 0
+		  
         endcase
     end
 	 
 endmodule
+
+
+
 
 
 module register_n(data_in, r_in, clk, Q, rst);
