@@ -181,7 +181,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 			.R6 (R6),
 			.R7 (R7),
 			.G (G_out),
-			.sel (bus_control), //havent defined sel yet
+			.sel (bus_control), 
 			.Bus (bus)
 		);
 		
