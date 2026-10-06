@@ -25,7 +25,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	
     // TODO: declare wires:
     
-	//some of these may need to be inputs
+	//some of these may need to be regs but i think itll work with wires
 	wire R0_in;
 	wire R1_in;
 	wire R2_in;
@@ -47,6 +47,10 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	
 	wire [15:0] G_in;
 	wire [15:0] G_out;
+	
+	wire IR_in;
+	wire [8:0] CU_in;
+	wire opcode;
 	
 	wire enable;
 	wire [3:0] tick;
@@ -147,9 +151,19 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	 (
         .clk  (clk_signal), 
         .rst  (rst), 
-        .data_in (ALY_out),
+        .data_in (ALU_out),
 		  .r_in (G_in),
         .Q    (G_out)
+    );
+    
+	 	 shift_register IR
+	 #(.N(9)
+	 (
+        .clk  (clk_signal), 
+        .rst  (rst), 
+        .data_in (DIN),
+		  .r_in (IR_in),
+        .Q    (CU_in)
     );
     
     
@@ -201,30 +215,185 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	);
     
     // TODO: define control unit:
-    always @(/* List signals that can change the control unit's output */) begin
+    always @(posedge clk_signal) begin
         // TODO: Turn off all control signals:
-
+			IR_in <= 0;
+			enable<= 0;
+			
 
         // TODO: Turn on specific control signals based on current tick:
-        case (/* your counter value goes here */)
-            /* Tick 1 */:
+        case (tick)
+            4'b0001:
                 begin
-                    // TODO
+                   IR_in  <= 1;
+						 opcode <= Ir_out[8:6]
+						 enable <=1;
+
                 end
             
-            /* Tick 2 */:
+            4'b0010:
                 begin
-                    // TODO
+                    case (opcode)
+								3'b000: // display a register's content on hex as a decimal task 3
+									begin
+									
+									end
+						  
+								3'b001: //add Rx, Ry adds two register values
+									begin
+									
+									end
+									
+								3'b010: //addi Rx, immi adds register and intermediate
+									begin
+									
+									end
+									
+								3'b011:	//sub Rx, Ry subs two register values
+									begin
+									
+									end
+									
+								3'b100: // mult, multiplies the two register values
+									begin
+									
+									end
+									
+								3'b101: // ssi, shifts Rx by intermediate
+									begin
+									
+									end
+									
+								3'b111: //move an intermediate into a register
+									begin
+										bus_control <= 4'd0;
+										case (Rx)
+											3'd0:
+												begin
+												
+												end
+												
+											3'd1:
+												begin
+												
+												end
+												
+											3'd2:
+												begin
+												
+												end
+												
+											3'd3:
+												begin
+												
+												end
+												
+											3'd4:
+												begin
+												
+												end
+												
+											3'd5:
+												begin
+												
+												end
+												
+											3'd6:
+												begin
+												
+												end
+												
+											3'd7:
+												begin
+												
+												end
+											
+									end
+									
+								default: //make it idle
                 end
             
-            /* Tick 3 */:
+            4'b0100:
                 begin
-                    // TODO
+                    case (opcode)
+								3'b000: // display a register's content on hex as a decimal task 3
+									begin
+
+										
+									end
+						  
+								3'b001: //add Rx, Ry adds two register values
+									begin
+									
+									end
+									
+								3'b010: //addi Rx, immi adds register and intermediate
+									begin
+									
+									end
+									
+								3'b011:	//sub Rx, Ry subs two register values
+									begin
+									
+									end
+									
+								3'b100: // mult, multiplies the two register values
+									begin
+									
+									end
+									
+								3'b101: // ssi, shifts Rx by intermediate
+									begin
+									
+									end
+									
+								3'b111: //move an intermediate into a register
+									begin
+										
+									end
+									
+								default: //make it idle
                 end
             
-            /* Tick 4 */:
+            4'b1000:
                 begin
-                    // TODO
+                    case (opcode)
+								3'b000: // display a register's content on hex as a decimal task 3
+									begin
+										
+									end
+						  
+								3'b001: //add Rx, Ry adds two register values
+									begin
+									
+									end
+									
+								3'b010: //addi Rx, immi adds register and intermediate
+									begin
+									
+									end
+									
+								3'b011:	//sub Rx, Ry subs two register values
+									begin
+									
+									end
+									
+								3'b100: // mult, multiplies the two register values
+									begin
+									
+									end
+									
+								3'b101: // ssi, shifts Rx by intermediate
+									begin
+									
+									end
+									
+								3'b111: //move an intermediate into a register
+									begin
+										
+									end
+									
+								default: //make it idle
                 end
             
             default:
