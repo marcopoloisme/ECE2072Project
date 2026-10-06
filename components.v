@@ -5,6 +5,7 @@ This file contains Verilog code to implement individual components to be used in
 
 Please enter your name and student ID:
 
+Marcus van Maanen 34956158
 */
 module sign_extend(in, ext);
 	input [8:0] in;
