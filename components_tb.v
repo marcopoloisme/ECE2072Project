@@ -7,7 +7,7 @@ This file contains a Verilog test bench to test the correctness of the individua
 Please enter your student ID:
 
 */
-module components_tb.v;
+module components_tb;
 //register testbench
 
 // Parameter definition
@@ -108,7 +108,7 @@ module components_tb.v;
 	integer i, fail, pass;
 	
 	
-	mux_10_to_1 dut (
+	mux_10_to_1 test2 (
 			.R0(R0), .R1(R1), .R2(R2), .R3(R3),
          .R4(R4), .R5(R5), .R6(R6), .R7(R7),
          .G(G),   .SignExtDIN(SignExtDIN),

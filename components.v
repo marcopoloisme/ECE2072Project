@@ -23,7 +23,7 @@ module tick_FSM(
     input rst,
     input clk,
     output reg [3:0] tick
-)
+);
 	always @(posedge clk) begin //clock ticking 
 		if (rst) begin //check the reset value first, if reset = 1 then set tick to 0001. 
             tick <= 4'b0001;

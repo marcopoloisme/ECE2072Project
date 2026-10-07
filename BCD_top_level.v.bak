@@ -1,0 +1,46 @@
+module BCD_top_level (
+input wire CLOCK_50,
+input wire [9:0] SW,
+input wire [1:0] KEY,
+ 
+output wire [6:0] HEX0,
+output wire [6:0] HEX1,
+output wire [6:0] HEX2
+);
+ 
+wire [11:0] bcd_out;
+wire done;
+ 
+//------------------------------------------------------------------
+// Binary to BCD
+//------------------------------------------------------------------
+Binary_to_BCD #(
+.INPUT_WIDTH(8),
+.DECIMAL_DIGITS(3)
+) converter (
+.clk(CLOCK_50),
+.data_in(SW[7:0]),
+.enable(~KEY[0]),
+.o_BCD(bcd_out),
+.o_DV(done)
+);
+ 
+//------------------------------------------------------------------
+// Seven-segment displays
+//------------------------------------------------------------------
+seven_seg seg0 (
+.bcd(bcd_out[3:0]),
+.seg(HEX0)
+);
+ 
+seven_seg seg1 (
+.bcd(bcd_out[7:4]),
+.seg(HEX1)
+);
+ 
+seven_seg seg2 (
+.bcd(bcd_out[11:8]),
+.seg(HEX2)
+);
+ 
+endmodule

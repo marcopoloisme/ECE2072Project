@@ -1,18 +1,18 @@
-Fitter Status : Successful - Wed Sep 23 13:18:14 2026
+Fitter Status : Successful - Wed Oct 07 21:58:22 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ECE2072Project
-Top-level Entity Name : register_n
+Top-level Entity Name : BCD_top_level
 Family : MAX 10
-Device : 10M08DAF484C8G
+Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 18 / 8,064 ( < 1 % )
-    Total combinational functions : 18 / 8,064 ( < 1 % )
-    Dedicated logic registers : 16 / 8,064 ( < 1 % )
-Total registers : 16
-Total pins : 35 / 250 ( 14 % )
+Total logic elements : 95 / 49,760 ( < 1 % )
+    Total combinational functions : 95 / 49,760 ( < 1 % )
+    Dedicated logic registers : 37 / 49,760 ( < 1 % )
+Total registers : 37
+Total pins : 34 / 360 ( 9 % )
 Total virtual pins : 0
-Total memory bits : 0 / 387,072 ( 0 % )
-Embedded Multiplier 9-bit elements : 0 / 48 ( 0 % )
-Total PLLs : 0 / 2 ( 0 % )
+Total memory bits : 0 / 1,677,312 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )
 UFM blocks : 0 / 1 ( 0 % )
-ADC blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )

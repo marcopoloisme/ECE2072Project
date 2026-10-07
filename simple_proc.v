@@ -12,16 +12,16 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
     // TODO: Declare inputs and outputs:
 	input clk;
 	input rst;
-	input din;
-	output bus;
-	output R0;
-	output R1;
-	output R2;
-	output R3;
-	output R4;
-	output R5;
-	output R6; 
-	output R7;
+	input  [8:0] din;
+	output [15:0]bus;
+	output [15:0] R0;
+	output [15:0] R1;
+	output [15:0] R2;
+	output [15:0] R3;
+	output [15:0] R4;
+	output [15:0] R5;
+	output [15:0] R6; 
+	output [15:0] R7;
 	
     // TODO: declare wires:
     
@@ -55,60 +55,51 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	wire enable;
 	wire [3:0] tick;
 	
+	wire [2:0] Rx;
+	wire [2:0] Ry;
+	
     // instantiate registers:
-    shift_register R0 
-	 #(.N(16)
-	 (
+    shift_register #(.N(16)) Reg0 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus), 
-		  .r_in (R0_in)
+		  .r_in (R0_in),
         .Q    (R0)
     );
 	 
-    shift_register R1 
-	 #(.N(16)
-	 (
+    shift_register #(.N(16)) Reg1 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus),
-		  .r_in (R1_in)
+		  .r_in (R1_in),
         .Q    (R1)
     );
 	 
-	 shift_register R2 
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16))  Reg2 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus),
-		  .r_in (R2_in)
+		  .r_in (R2_in),
         .Q    (R2)
     );
 	 
-	 shift_register R3
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) Reg3 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus), 
-		  .r_in (R3_in)
+		  .r_in (R3_in),
         .Q    (R3)
     );
 	 
-	 shift_register R4
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) Reg4 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus), 
-		  .r_in (R4_in)
+		  .r_in (R4_in),
         .Q    (R4)
     );
 	 
-	 shift_register R5 
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) Reg5 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus),
@@ -116,9 +107,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
         .Q    (R5)
     );
 	 
-	 shift_register R6 
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) Reg6 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus), 
@@ -126,29 +115,23 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
         .Q    (R6)
     );
 	 
-	 shift_register R7 
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) Reg7 (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus), 
-		  .r_in (R7_in)
+		  .r_in (R7_in),
         .Q    (R7)
     );
 	 
-	 shift_register A 
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) A (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (bus),
-		  .r_in (A_in)
+		  .r_in (A_in),
         .Q    (A_out)
     );
 	 
-	 shift_register G
-	 #(.N(16)
-	 (
+	 shift_register #(.N(16)) G (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (ALU_out),
@@ -156,9 +139,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
         .Q    (G_out)
     );
     
-	 	 shift_register IR
-	 #(.N(9)
-	 (
+	 	 shift_register #(.N(9)) IR (
         .clk  (clk_signal), 
         .rst  (rst), 
         .data_in (DIN),
@@ -169,8 +150,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
     
     //instantiate Multiplexer:
     
-    multiplexer inst1 
-	 (
+    multiplexer inst1 (
 			.signExtDin (signExtDin),
 			.R0 (R0),
 			.R1 (R1),
@@ -188,8 +168,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 		
     // instantiate ALU:
     
-	 ALU inst1 
-	 (
+	 ALU inst2 (
 			.input_a (A_out),
 			.input_b (bus),
 			.alu_op (ALU_OP),
@@ -198,8 +177,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
     
     //instantiate tick counter:
     
-	 tick_FSM inst1
-	 (
+	 tick_FSM inst3 (
 			.enable (enable),
 			.clk (clk),
 			.rst (rst),
@@ -208,15 +186,15 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	 
 	 // instantiate sign_extender
 	 
-	 sign_extend inst1
+	 sign_extend inst4
 	 (
 			.in (DIN),
 			.ext (signExtDin)
 	);
     
-    // TODO: define control unit:
+    // define control unit:
     always @(posedge clk_signal) begin
-        // TODO: Turn off all control signals:
+        //Turn off all control signals:
 			IR_in <= 1'b0;
 			enable<= 1'b0;
 			R0_in <= 1'b0;
@@ -229,27 +207,24 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 			R7_in <= 1'b0;
 			A_in  <= 1'b0;
 			G_in  <= 1'b0;
+			bus_control = 4'd0;
 			ALU_OP<= 3'b111;
 
-        // TODO: Turn on specific control signals based on current tick:
+        // Turn on specific control signals based on current tick:
         case (tick)
             4'b0001:
                 begin
                    IR_in  <= 1'b1;
-						 // I dont know if this structure works
-						 opcode <= Ir_out[8:6];
+						 // I dont know if this order works
+						 opcode <= CU_in[8:6];
 						 enable <= 1'b1;
-						 Rx	  <= Ir_out[5:3];
-						 Ry 	  <= Ir_out[2:0];
+						 Rx	  <= CU_in[5:3];
+						 Ry 	  <= CU_in[2:0];
                 end
             
             4'b0010:
                 begin
                     case (opcode)
-								3'b000: // display a register's content on hex as a decimal task 3
-									begin
-									
-									end
 						  
 								3'b001: //add Rx, Ry adds two register values
 									begin
@@ -291,17 +266,8 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 										enable <= 1'b1;
 									end
 									
-								3'b100: // mult, multiplies the two register values
-									begin
-									
-									end
-									
-								3'b101: // ssi, shifts Rx by intermediate
-									begin
-									
-									end
-									
 								3'b111: //move an intermediate into a register
+									begin
 										//move the intermediate given into the specified register
 										bus_control <= 4'd0;
 										case (Rx)
@@ -315,17 +281,15 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd7:	R7_in <= 1'b1;
 										endcase
 										enable <=1'b1;
-								default: //make it idle
-                endcase
-            
+									end
+								default: 
+									enable <= 1'b1;
+						endcase
+					end
             4'b0100:
                 begin
 							case (opcode)
-								3'b000: // display a register's content on hex as a decimal task 3
-									begin
 
-										
-									end
 						  
 								3'b001: //add Rx, Ry adds two register values
 									begin
@@ -381,31 +345,16 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 										enable <= 1'b1;
 									end
 									
-								3'b100: // mult, multiplies the two register values
-									begin
-									
-									end
-									
-								3'b101: // ssi, shifts Rx by intermediate
-									begin
-									
-									end
-									
 								3'b111: //move an intermediate into a register
 									//do nothing
 									enable <= 1'b1;
 								default: 
-									enable <= 1'b1
+									enable <= 1'b1;
 							endcase
-            
+					end
             4'b1000:
                 begin
                     case (opcode)
-								3'b000: // display a register's content on hex as a decimal task 3
-									begin
-										
-									end
-						  
 								3'b001: //add Rx, Ry adds two register values
 									begin
 										//move the result from Register G to Rx
@@ -420,7 +369,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1
+										enable <= 1'b1;
 									end
 									
 								3'b010: //addi Rx, immi adds register and intermediate
@@ -437,7 +386,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1
+										enable <= 1'b1;
 									end
 									
 								3'b011:	//sub Rx, Ry subs two register values
@@ -454,29 +403,23 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1
-									end
-									
-								3'b100: // mult, multiplies the two register values
-									begin
-									
-									end
-									
-								3'b101: // ssi, shifts Rx by intermediate task 3
-									begin
-									
+										enable <= 1'b1;
 									end
 									
 								3'b111: //move an intermediate into a register
+									begin
 										//do nothing
 										enable <= 1'b1;
+									end
+										
 								default: //make it idle
 										enable <= 1'b1;
+							endcase
                 end
             
             default:
                 begin
-                    // TODO
+                    enable <= 1'b1;
                 end
 
         endcase

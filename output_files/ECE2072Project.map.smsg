@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at proc_extension.v(286): always construct contains both blocking and non-blocking assignments File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 286
+Warning (10268): Verilog HDL information at simple_proc.v(196): always construct contains both blocking and non-blocking assignments File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc.v Line: 196
