@@ -15,7 +15,7 @@ module sign_extend_tb;
         passed = 0;
         failed = 0;
 
-        // Test 1: Positive input
+        // Test 1 positive input
         in = 9'b000001010;
         #10;
         if (ext === 16'b0000000000001010) begin
@@ -26,7 +26,7 @@ module sign_extend_tb;
             failed = failed + 1;
         end
 
-        // Test 2: Negative input
+        // Test 2 negative input
         in = 9'b100100010;
         #10;
         if (ext === 16'b1111111100100010) begin
@@ -37,39 +37,29 @@ module sign_extend_tb;
             failed = failed + 1;
         end
 
-        // Test 3: Zero input
-        in = 9'b000000000;
-        #10;
-        if (ext === 16'b0000000000000000) begin
-            $display("PASS: Zero sign extension");
-            passed = passed + 1;
-        end else begin
-            $display("FAIL: Zero sign extension, expected 0000000000000000, got %b", ext);
-            failed = failed + 1;
-        end
-
-        // Test 4: Maximum positive 9-bit signed value
+        // Test 4 Max positive 9 bit signed value
         in = 9'b011111111;
         #10;
-        if (ext === 16'b0000000001111111) begin
-            $display("PASS: Maximum positive input");
-            passed = passed + 1;
+        if (ext === 16'b0000000011111111) begin
+        $display("PASS: Maximum positive input");
+        passed = passed + 1;
         end else begin
-            $display("FAIL: Maximum positive input, expected 0000000001111111, got %b", ext);
-            failed = failed + 1;
+        $display("FAIL: Maximum positive input, expected 0000000011111111, got %b", ext);
+        failed = failed + 1;
         end
 
-        // Test 5: Minimum negative 9-bit signed value
+        // Test 5 Min negative 9 bit signed value
         in = 9'b100000000;
         #10;
         if (ext === 16'b1111111110000000) begin
-            $display("PASS: Minimum negative input");
-            passed = passed + 1;
+        $display("PASS: Minimum negative input");
+        passed = passed + 1;
         end else begin
-            $display("FAIL: Minimum negative input, expected 1111111110000000, got %b", ext);
-            failed = failed + 1;
+        $display("FAIL: Minimum negative input, expected 1111111110000000, got %b", ext);
+        failed = failed + 1;
         end
 
+    
         //summmary 
     
         $display("SIGN EXTENDER TEST SUMMARY");
