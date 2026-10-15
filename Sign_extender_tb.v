@@ -71,11 +71,11 @@ module sign_extend_tb;
         end
 
         // Test summary
-        $display("----------------------------------------");
+      
         $display("SIGN EXTENDER TEST SUMMARY");
         $display("Tests passed: %0d", passed);
         $display("Tests failed: %0d", failed);
-        $display("----------------------------------------");
+     
 
         if (failed == 0)
             $display("ALL TESTS PASSED");
