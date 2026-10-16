@@ -6,6 +6,7 @@ This file contains Verilog code to implement individual components to be used in
 Please enter your name and student ID:
 
 Marcus van Maanen 34956158
+Saanvi Kaushik Joshi 31240902 
 */
 //Sign extender code 
 module sign_extend(
@@ -75,7 +76,7 @@ endmodule
 
 //ALU code: 
 
-module ALU(
+module alu(
 	input [15:0] input_a,
 	input [15:0] input_b,
 	input [2:0] alu_op,
