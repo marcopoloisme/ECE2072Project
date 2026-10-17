@@ -185,7 +185,7 @@ endmodule
 
 module tick_to_binary (
 	input [3:0] tick,
-	output [3:0] result
+	output reg [3:0] result
 	);
 	always @(*) begin //clock ticking 
 		case (tick)
@@ -205,8 +205,8 @@ module twos_complement
 	
 	(
 	input [N-1:0] data_in,
-	output negative,
-	output [N-1:0] data_out
+	output reg negative,
+	output reg [N-1:0] data_out
 	);
 	
 	always @(*) begin
