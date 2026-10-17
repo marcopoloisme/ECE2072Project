@@ -20,7 +20,7 @@ Binary_to_BCD #(
 .clk(CLOCK_50),
 .data_in(SW[7:0]),
 .enable(~KEY[0]),
-.result (bcd_out),
+.result (bcd_out)
 );
 
 //------------------------------------------------------------------

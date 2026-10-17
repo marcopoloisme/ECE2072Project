@@ -5,15 +5,15 @@ This file contains Verilog code to implement individual the CPU.
 Please enter your student ID:
 
 */
-module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
+module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,tick);
 
     // Note: The skeleton you are provided with includes output ports to output the values of the internal registers R0 - R7, for the purpose of test benching. When instantiating the processor to program your DE10-lite, you can leave these ports unused.
 
     // TODO: Declare inputs and outputs:
 	input clk;
 	input rst;
-	input  [8:0] din;
-	output [15:0]bus;
+	input  [8:0]  din;
+	output [15:0] bus;
 	output [15:0] R0;
 	output [15:0] R1;
 	output [15:0] R2;
@@ -22,127 +22,130 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	output [15:0] R5;
 	output [15:0] R6; 
 	output [15:0] R7;
+	output [3:0] tick;
 	
     // TODO: declare wires:
-    
-	//some of these may need to be regs but i think it'll work with wires
-	wire R0_in;
-	wire R1_in;
-	wire R2_in;
-	wire R3_in;
-	wire R4_in;
-	wire R5_in;
-	wire R6_in;
-	wire R7_in;
+    // might need to be regs
+	reg R0_in;
+	reg R1_in;
+	reg R2_in;
+	reg R3_in;
+	reg R4_in;
+	reg R5_in;
+	reg R6_in;
+	reg R7_in;
 	
-	wire signExtDin;
+	wire [15:0] signExtDin;
 	
-	wire [3:0] bus_control;
+	reg [3:0] bus_control;
 	
-	wire A_in;	
+	reg A_in;	
 	wire [15:0] A_out;
 	
-	wire [2:0] ALU_OP;
+	reg [2:0] ALU_OP;
 	wire [15:0] ALU_out;
 	
-	wire [15:0] G_in;
+	reg G_in;
 	wire [15:0] G_out;
 	
-	wire IR_in;
+	reg IR_in;
 	wire [8:0] CU_in;
-	wire opcode;
 	
 	wire enable;
-	wire [3:0] tick;
+	assign enable = 1'b1;
 	
+	wire [2:0] opcode;
 	wire [2:0] Rx;
 	wire [2:0] Ry;
-	
+	assign opcode = CU_in[8:6];
+	assign Rx = CU_in[5:3];
+	assign Ry = CU_in[2:0];
+
     // instantiate registers:
-    shift_register #(.N(16)) Reg0 (
-        .clk  (clk_signal), 
+    register_n #(.N(16)) Reg0 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R0_in),
         .Q    (R0)
     );
 	 
-    shift_register #(.N(16)) Reg1 (
-        .clk  (clk_signal), 
+    register_n #(.N(16)) Reg1 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R1_in),
         .Q    (R1)
     );
 	 
-	 shift_register #(.N(16))  Reg2 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16))  Reg2 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R2_in),
         .Q    (R2)
     );
 	 
-	 shift_register #(.N(16)) Reg3 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) Reg3 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R3_in),
         .Q    (R3)
     );
 	 
-	 shift_register #(.N(16)) Reg4 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) Reg4 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R4_in),
         .Q    (R4)
     );
 	 
-	 shift_register #(.N(16)) Reg5 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) Reg5 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R5_in), 
         .Q    (R5)
     );
 	 
-	 shift_register #(.N(16)) Reg6 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) Reg6 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R6_in),
         .Q    (R6)
     );
 	 
-	 shift_register #(.N(16)) Reg7 (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) Reg7 (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R7_in),
         .Q    (R7)
     );
 	 
-	 shift_register #(.N(16)) A (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) A (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (A_in),
         .Q    (A_out)
     );
 	 
-	 shift_register #(.N(16)) G (
-        .clk  (clk_signal), 
+	 register_n #(.N(16)) G (
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (ALU_out),
 		  .r_in (G_in),
         .Q    (G_out)
     );
     
-	 	 shift_register #(.N(9)) IR (
-        .clk  (clk_signal), 
+	 register_n #(.N(9)) IR (
+        .clk  (clk), 
         .rst  (rst), 
-        .data_in (DIN),
+        .data_in (din),
 		  .r_in (IR_in),
         .Q    (CU_in)
     );
@@ -151,7 +154,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
     //instantiate Multiplexer:
     
     multiplexer inst1 (
-			.signExtDin (signExtDin),
+			.SignExtDin (signExtDin),
 			.R0 (R0),
 			.R1 (R1),
 			.R2 (R2),
@@ -188,15 +191,14 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 	 
 	 sign_extend inst4
 	 (
-			.in (DIN),
+			.in (din),
 			.ext (signExtDin)
 	);
     
     // define control unit:
-    always @(posedge clk_signal) begin
+    always @(*) begin
         //Turn off all control signals:
 			IR_in <= 1'b0;
-			enable<= 1'b0;
 			R0_in <= 1'b0;
 			R1_in <= 1'b0;
 			R2_in <= 1'b0;
@@ -207,7 +209,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 			R7_in <= 1'b0;
 			A_in  <= 1'b0;
 			G_in  <= 1'b0;
-			bus_control = 4'd0;
+			bus_control <= 4'd15;
 			ALU_OP<= 3'b111;
 
         // Turn on specific control signals based on current tick:
@@ -215,11 +217,6 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
             4'b0001:
                 begin
                    IR_in  <= 1'b1;
-						 // I dont know if this order works
-						 opcode <= CU_in[8:6];
-						 enable <= 1'b1;
-						 Rx	  <= CU_in[5:3];
-						 Ry 	  <= CU_in[2:0];
                 end
             
             4'b0010:
@@ -229,7 +226,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 								3'b001: //add Rx, Ry adds two register values
 									begin
 										// get the value in Rx, save to A
-										A_in = 1'b1;
+										A_in <= 1'b1;
 										case (Rx)
 											3'd0: bus_control <= 4'd0;
 											3'd1: bus_control <= 4'd1;
@@ -240,19 +237,18 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: bus_control <= 4'd6;
 											3'd7:	bus_control <= 4'd7;
 										endcase
-										enable <= 1'b1;
 									end
 									
 								3'b010: //addi Rx, immi adds register and intermediate
 									begin
 										// get the immediate from DIN store in A
-										A_in = 1'b1;
+										A_in <= 1'b1;
 										bus_control <= 4'd9;
-										enable <= 1'b1;
 									end
 									
 								3'b011:	//sub Rx, Ry subs two register values
 									begin
+										A_in <= 1'b1;
 										case (Rx)
 											3'd0: bus_control <= 4'd0;
 											3'd1: bus_control <= 4'd1;
@@ -263,13 +259,13 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: bus_control <= 4'd6;
 											3'd7:	bus_control <= 4'd7;
 										endcase
-										enable <= 1'b1;
+
 									end
 									
 								3'b111: //move an intermediate into a register
 									begin
 										//move the intermediate given into the specified register
-										bus_control <= 4'd0;
+										bus_control <= 4'd9;
 										case (Rx)
 											3'd0: R0_in <= 1'b1;
 											3'd1: R1_in <= 1'b1;
@@ -280,10 +276,8 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <=1'b1;
+
 									end
-								default: 
-									enable <= 1'b1;
 						endcase
 					end
             4'b0100:
@@ -306,7 +300,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 										endcase
 										ALU_OP <= 3'b001;
 										G_in <= 1'b1;
-										enable <= 1'b1;
+										
 									end
 									
 								3'b010: //addi Rx, immi adds register and intermediate
@@ -324,7 +318,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 										endcase
 										ALU_OP <= 3'b001;
 										G_in <= 1'b1;
-										enable <= 1'b1;
+
 									end
 									
 								3'b011:	//sub Rx, Ry subs two register values
@@ -342,14 +336,14 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 										endcase
 										ALU_OP <= 3'b010;
 										G_in <= 1'b1;
-										enable <= 1'b1;
+
 									end
 									
 								3'b111: //move an intermediate into a register
+								begin
 									//do nothing
-									enable <= 1'b1;
-								default: 
-									enable <= 1'b1;
+								end
+
 							endcase
 					end
             4'b1000:
@@ -358,7 +352,7 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 								3'b001: //add Rx, Ry adds two register values
 									begin
 										//move the result from Register G to Rx
-										bus_control = 4'd8;
+										bus_control <= 4'd8;
 										case (Rx)
 											3'd0: R0_in <= 1'b1;
 											3'd1: R1_in <= 1'b1;
@@ -369,13 +363,13 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1;
+
 									end
 									
 								3'b010: //addi Rx, immi adds register and intermediate
 									begin
 										//move the result from Register G to Rx
-										bus_control = 4'd8;
+										bus_control <= 4'd8;
 										case (Rx)
 											3'd0: R0_in <= 1'b1;
 											3'd1: R1_in <= 1'b1;
@@ -386,13 +380,13 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1;
+
 									end
 									
 								3'b011:	//sub Rx, Ry subs two register values
 									begin
 										//move the result from Register G to Rx
-										bus_control = 4'd8;
+										bus_control <= 4'd8;
 										case (Rx)
 											3'd0: R0_in <= 1'b1;
 											3'd1: R1_in <= 1'b1;
@@ -403,23 +397,16 @@ module simple_proc(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7);
 											3'd6: R6_in <= 1'b1;
 											3'd7:	R7_in <= 1'b1;
 										endcase
-										enable <= 1'b1;
+
 									end
 									
 								3'b111: //move an intermediate into a register
 									begin
 										//do nothing
-										enable <= 1'b1;
+				
 									end
-										
-								default: //make it idle
-										enable <= 1'b1;
+							
 							endcase
-                end
-            
-            default:
-                begin
-                    enable <= 1'b1;
                 end
 
         endcase

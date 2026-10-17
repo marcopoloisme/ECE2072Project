@@ -1,16 +1,16 @@
-Analysis & Synthesis Status : Successful - Wed Oct 07 21:58:09 2026
+Analysis & Synthesis Status : Successful - Sat Oct 17 14:39:08 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ECE2072Project
-Top-level Entity Name : BCD_top_level
+Top-level Entity Name : proc_extension_top_level
 Family : MAX 10
-Total logic elements : 96
-    Total combinational functions : 94
-    Dedicated logic registers : 37
-Total registers : 37
-Total pins : 34
+Total logic elements : 733
+    Total combinational functions : 589
+    Dedicated logic registers : 189
+Total registers : 189
+Total pins : 70
 Total virtual pins : 0
 Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
+Embedded Multiplier 9-bit elements : 2
 Total PLLs : 0
 UFM blocks : 0
 ADC blocks : 0

@@ -136,3 +136,104 @@ module register_n(data_in, r_in, clk, Q, rst);
 endmodule 
 
 
+
+module Binary_to_BCD
+#(
+    parameter N = 16,
+    parameter N2 = 5
+)
+(
+    input  [N-1:0] data_in,
+    output reg [N2*4-1:0] result
+);
+
+integer i;
+reg [35:0] shift;
+
+always @(*) begin
+
+    shift = 0;
+    shift[N-1:0] = data_in;
+
+    for (i = 0; i < N; i = i + 1) begin
+
+        if (shift[19:16] >= 5)
+            shift[19:16] = shift[19:16] + 3;
+
+        if (shift[23:20] >= 5)
+            shift[23:20] = shift[23:20] + 3;
+
+        if (shift[27:24] >= 5)
+            shift[27:24] = shift[27:24] + 3;
+
+        if (shift[31:28] >= 5)
+            shift[31:28] = shift[31:28] + 3;
+
+        if (shift[35:32] >= 5)
+            shift[35:32] = shift[35:32] + 3;
+
+        shift = shift << 1;
+    end
+
+    result = shift[35:16];
+
+end
+
+endmodule
+
+
+module tick_to_binary (
+	input [3:0] tick,
+	output [3:0] result
+	);
+	always @(*) begin //clock ticking 
+		case (tick)
+			 4'b0001: result <= 4'd0;
+			 4'b0010: result <= 4'd1;
+			 4'b0100: result <= 4'd2;
+			 4'b1000: result <= 4'd3;
+			 default: result <= 4'd0; 
+		endcase
+	end
+endmodule
+	
+
+
+module twos_complement 
+	#(parameter N = 16)
+	
+	(
+	input [N-1:0] data_in,
+	output negative,
+	output [N-1:0] data_out
+	);
+	
+	always @(*) begin
+	
+		negative = data_in[N-1];
+		
+    if (negative)
+        data_out = ~(data_in - 1'b1);
+    else
+        data_out = data_in;
+	 end
+endmodule
+	
+
+module BCD (
+    input [3:0] data,
+	 input negative,
+    output [7:0] X
+);
+
+assign X[0] = ~(data[1]|data[3]|~(data[2]^data[0]));
+assign X[1] = ~(data[3]|~data[2]|~(data[0]^data[1]));
+assign X[2] = data[1]&~data[2]&~data[3]&~data[0];
+assign X[3] = ~((~data[1]&~data[0]&~data[2])|(~data[3]&data[2]&(data[0]^data[1]))|(~data[2]&~data[3]&data[1]));
+assign X[4] = ~((~data[0] &~data[1]&~data[2])| data[1]&~data[0]);
+assign X[5] = ~((~data[0] &~data[1])|(data[0]^data[1])&(data[2]^data[3]));
+assign X[6] = ~((data[1]&~data[2]&~data[3])|~data[1]&(data[2]^data[3])|data[1]&~data[0]);
+assign X[7] = ~negative;
+
+endmodule
+

@@ -5,8 +5,9 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v}
-vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n.v}
+vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v}
+vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v}
+vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc.v}
 
 vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v}
 

@@ -10,41 +10,189 @@
 # Copying C:/intelFPGA_lite/18.1/modelsim_ae/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v}
+# vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:57:39 on Sep 25,2026
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project" C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v 
-# -- Compiling module register_n_tb
+# Start time: 21:47:08 on Oct 15,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project" C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v 
+# -- Compiling module simple_proc_top_level
 # 
 # Top level modules:
-# 	register_n_tb
-# End time: 20:57:39 on Sep 25,2026, Elapsed time: 0:00:00
+# 	simple_proc_top_level
+# End time: 21:47:08 on Oct 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n.v}
+# vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:57:39 on Sep 25,2026
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project" C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n.v 
+# Start time: 21:47:08 on Oct 15,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project" C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v 
+# -- Compiling module sign_extend
+# -- Compiling module tick_FSM
+# -- Compiling module multiplexer
+# -- Compiling module ALU
 # -- Compiling module register_n
+# -- Compiling module Binary_to_BCD
+# -- Compiling module tick_to_binary
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(285): (vlog-2110) Illegal reference to net "result".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(286): (vlog-2110) Illegal reference to net "result".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(287): (vlog-2110) Illegal reference to net "result".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(288): (vlog-2110) Illegal reference to net "result".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(289): (vlog-2110) Illegal reference to net "result".
+# -- Compiling module twos_complement
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(307): (vlog-2110) Illegal reference to net "negative".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(311): (vlog-2110) Illegal reference to net "data_out".
+# ** Error: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v(315): (vlog-2110) Illegal reference to net "data_out".
+# -- Compiling module BCD
+# End time: 21:47:08 on Oct 15,2026, Elapsed time: 0:00:00
+# Errors: 8, Warnings: 0
+# ** Error: C:/intelFPGA_lite/18.1/modelsim_ae/win32aloem/vlog failed.
+# Error in macro ./ECE2072Project_run_msim_rtl_verilog.do line 9
+# C:/intelFPGA_lite/18.1/modelsim_ae/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v}"
+pwd
+# C:/Users/mvmya/Documents/GitHub/ECE2072Project/simulation/modelsim
+dir
+#  Volume in drive C is Windows-SSD
+#  Volume Serial Number is 5C10-341C
 # 
-# Top level modules:
-# 	register_n
-# End time: 20:57:39 on Sep 25,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
+#  Directory of C:\Users\mvmya\Documents\GitHub\ECE2072Project\simulation\modelsim
 # 
-# vlog -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project {C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v}
+# 15/10/2026  09:47 PM    <DIR>          .
+# 26/09/2026  12:19 PM    <DIR>          ..
+# 15/10/2026  09:43 PM                43 ECE2072Project.sft
+# 15/10/2026  09:43 PM           452,855 ECE2072Project.vo
+# 15/10/2026  09:43 PM            61,444 ECE2072Project_modelsim.xrf
+# 15/10/2026  09:46 PM               896 ECE2072Project_run_msim_rtl_verilog.do
+# 26/09/2026  12:19 PM               443 ECE2072Project_run_msim_rtl_verilog.do.bak
+# 26/09/2026  12:19 PM               443 ECE2072Project_run_msim_rtl_verilog.do.bak1
+# 25/09/2026  09:38 PM               252 ECE2072Project_run_msim_rtl_verilog.do.bak10
+# 15/10/2026  09:43 PM               896 ECE2072Project_run_msim_rtl_verilog.do.bak11
+# 26/09/2026  12:19 PM               443 ECE2072Project_run_msim_rtl_verilog.do.bak2
+# 26/09/2026  12:19 PM               419 ECE2072Project_run_msim_rtl_verilog.do.bak3
+# 26/09/2026  12:19 PM               419 ECE2072Project_run_msim_rtl_verilog.do.bak4
+# 26/09/2026  12:19 PM               421 ECE2072Project_run_msim_rtl_verilog.do.bak5
+# 26/09/2026  12:19 PM               266 ECE2072Project_run_msim_rtl_verilog.do.bak6
+# 26/09/2026  12:19 PM               266 ECE2072Project_run_msim_rtl_verilog.do.bak7
+# 26/09/2026  12:19 PM               266 ECE2072Project_run_msim_rtl_verilog.do.bak8
+# 25/09/2026  09:36 PM               252 ECE2072Project_run_msim_rtl_verilog.do.bak9
+# 15/10/2026  09:47 PM            11,131 modelsim.ini
+# 15/10/2026  09:47 PM             3,291 msim_transcript
+# 15/10/2026  09:47 PM    <DIR>          rtl_work
+# 25/09/2026  09:58 PM           139,264 vsim.wlf
+# 15/10/2026  09:44 PM    <DIR>          work
+# 15/10/2026  09:44 PM    <DIR>          work'
+#               19 File(s)        673,710 bytes
+#                5 Dir(s)  368,200,232,960 bytes free
+cd ../..
+# reading C:/intelFPGA_lite/18.1/modelsim_ae/win32aloem/../modelsim.ini
+pwd
+# C:/Users/mvmya/Documents/GitHub/ECE2072Project
+dir
+#  Volume in drive C is Windows-SSD
+#  Volume Serial Number is 5C10-341C
+# 
+#  Directory of C:\Users\mvmya\Documents\GitHub\ECE2072Project
+# 
+# 15/10/2026  09:46 PM    <DIR>          .
+# 03/10/2026  05:33 PM    <DIR>          ..
+# 26/09/2026  12:19 PM                89 .gitattributes
+# 26/09/2026  12:19 PM               135 .gitignore
+# 07/10/2026  09:43 AM                 0 ALU_tb.v
+# 07/10/2026  09:43 PM               813 BCD_top_level.v
+# 07/10/2026  10:32 AM               893 BCD_top_level.v.bak
+# 07/10/2026  09:57 PM             5,233 binary_to_BCD.v
+# 07/10/2026  09:59 AM             4,049 binary_to_BCD.v.bak
+# 15/10/2026  09:15 PM             8,749 components.v
+# 26/09/2026  12:19 PM             1,578 components.v.bak
+# 07/10/2026  11:15 AM             5,195 components_tb.v
+# 26/09/2026  12:19 PM               319 components_tb.v.bak
+# 15/10/2026  09:46 PM    <DIR>          db
+# 26/09/2026  12:19 PM             1,329 ECE2072Project.qpf
+# 15/10/2026  09:46 PM            25,759 ECE2072Project.qsf
+# 07/10/2026  11:41 AM            17,283 ECE2072Project.qsf.bak
+# 15/10/2026  09:46 PM             1,069 ECE2072Project_nativelink_simulation.rpt
+# 07/10/2026  09:43 AM             1,330 ECE2072_Project.qpf
+# 07/10/2026  09:43 AM             3,232 ECE2072_Project.qsf
+# 26/09/2026  12:19 PM    <DIR>          incremental_db
+# 25/09/2026  09:36 PM               789 mux_10_to_1.v
+# 26/09/2026  12:19 PM               792 mux_10_to_1.v.bak
+# 26/09/2026  12:19 PM             2,668 mux_10_to_1_tb.v
+# 26/09/2026  12:19 PM               567 mux_10_to_1_tb.v.bak
+# 15/10/2026  09:46 PM    <DIR>          output_files
+# 06/10/2026  11:00 AM             1,645 proc.v
+# 26/09/2026  12:19 PM             1,645 proc.v.bak
+# 13/10/2026  10:21 AM            15,855 proc_extension.v
+# 26/09/2026  12:19 PM               210 proc_extension.v.bak
+# 26/09/2026  12:19 PM               273 proc_extension_tb.v
+# 07/10/2026  10:00 PM                 0 proc_memory.v
+# 26/09/2026  12:19 PM               273 proc_tb.v
+# 26/09/2026  12:19 PM                55 README.md
+# 26/09/2026  02:36 PM               675 register_n.v
+# 26/09/2026  12:19 PM               675 register_n.v.bak
+# 26/09/2026  12:19 PM             2,480 register_n_tb.v
+# 26/09/2026  12:19 PM             2,480 register_n_tb.v.bak
+# 26/09/2026  12:19 PM               620 Registor.v.bak
+# 26/09/2026  12:19 PM             2,623 registor_n_tb.v.bak
+# 08/10/2026  10:44 AM               246 Sign_extender.v
+# 07/10/2026  09:43 AM                 0 Sign_extender.v.bak
+# 07/10/2026  09:43 AM             1,238 Sign_extender_tb.v
+# 07/10/2026  09:43 AM                 0 Sign_extender_tb.v.bak
+# 15/10/2026  09:24 PM             9,824 simple_proc.v
+# 06/10/2026  10:36 AM                 1 simple_proc.v.bak
+# 15/10/2026  09:32 PM             3,573 simple_proc_tb.v
+# 15/10/2026  09:25 PM               876 simple_proc_top_level.v
+# 13/10/2026  10:31 AM               383 simple_proc_top_level.v.bak
+# 26/09/2026  12:19 PM    <DIR>          simulation
+# 07/10/2026  09:43 AM                 0 Tick_Counter_tb.v
+#               45 File(s)        127,521 bytes
+#                6 Dir(s)  368,200,269,824 bytes free
+vlib work
+vlog components.v
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:57:39 on Sep 25,2026
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project" C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v 
-# -- Compiling module register_n_tb
+# Start time: 21:49:12 on Oct 15,2026
+# vlog -reportprogress 300 components.v 
+# -- Compiling module sign_extend
+# -- Compiling module tick_FSM
+# -- Compiling module multiplexer
+# -- Compiling module ALU
+# -- Compiling module register_n
+# -- Compiling module Binary_to_BCD
+# -- Compiling module tick_to_binary
+# ** Error: components.v(285): (vlog-2110) Illegal reference to net "result".
+# ** Error: components.v(286): (vlog-2110) Illegal reference to net "result".
+# ** Error: components.v(287): (vlog-2110) Illegal reference to net "result".
+# ** Error: components.v(288): (vlog-2110) Illegal reference to net "result".
+# ** Error: components.v(289): (vlog-2110) Illegal reference to net "result".
+# -- Compiling module twos_complement
+# ** Error: components.v(307): (vlog-2110) Illegal reference to net "negative".
+# ** Error: components.v(311): (vlog-2110) Illegal reference to net "data_out".
+# ** Error: components.v(315): (vlog-2110) Illegal reference to net "data_out".
+# -- Compiling module BCD
+# End time: 21:49:12 on Oct 15,2026, Elapsed time: 0:00:00
+# Errors: 8, Warnings: 0
+# C:/intelFPGA_lite/18.1/modelsim_ae/win32aloem/vlog failed.
+vlog simple_proc.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 21:49:12 on Oct 15,2026
+# vlog -reportprogress 300 simple_proc.v 
+# -- Compiling module simple_proc
 # 
 # Top level modules:
-# 	register_n_tb
-# End time: 20:57:39 on Sep 25,2026, Elapsed time: 0:00:00
+# 	simple_proc
+# End time: 21:49:12 on Oct 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
+vlog simple_proc_tb.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 21:49:12 on Oct 15,2026
+# vlog -reportprogress 300 simple_proc_tb.v 
+# -- Compiling module simple_proc_tb
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  register_n_tb
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" register_n_tb 
-# Start time: 20:57:39 on Sep 25,2026
+# Top level modules:
+# 	simple_proc_tb
+# End time: 21:49:12 on Oct 15,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim work.simple_proc_tb
+# vsim work.simple_proc_tb 
+# Start time: 21:49:19 on Oct 15,2026
 # //  ModelSim - Intel FPGA Edition 10.5b Oct  5 2016
 # //
 # //  Copyright 1991-2016 Mentor Graphics Corporation
@@ -58,33 +206,78 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Loading sv_std.std
-# Loading work.register_n_tb
+# Loading work.simple_proc_tb
+# Loading work.simple_proc
 # Loading work.register_n
-# 
-# add wave *
-# view structure
-# .main_pane.structure.interior.cs.body.struct
-# view signals
-# .main_pane.objects.interior.cs.body.tree
-# run -all
-# --------------------------------------------
-# Starting Register Testbench...
-# --------------------------------------------
-# Reset released. Q = 0x0 (Expected: 0x0)
-# Write En=1, Data=0xA5A5. Q = 0xa5a5 (Expected: 0xA5A5)
-# Write En=0, Data=0xFFFF. Q = 0xa5a5 (Expected: 0xA5A5 - Unchanged)
-# Write En=1, Data=0x1234. Q = 0x1234 (Expected: 0x1234)
-# Reset & Write En active. Q = 0x0 (Expected: 0x0 - Reset priority)
-# --------------------------------------------
-# Testbench Completed Successfully.
-# --------------------------------------------
-# ** Note: $finish    : C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v(92)
-#    Time: 106 ns  Iteration: 0  Instance: /register_n_tb
-# 1
-# Break in Module register_n_tb at C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v line 92
+# Loading work.multiplexer
+# Loading work.ALU
+# Loading work.tick_FSM
+# Loading work.sign_extend
+# ** Warning: (vsim-3017) simple_proc_tb.v(24): [TFMPC] - Too few port connections. Expected 13, found 12.
+#    Time: 0 ps  Iteration: 0  Instance: /simple_proc_tb/DUT File: simple_proc.v
+# ** Warning: (vsim-3722) simple_proc_tb.v(24): [TFMPC] - Missing connection for port 'tick'.
+vsim work.simple_proc_tb
+# End time: 21:49:29 on Oct 15,2026, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 2
+# vsim work.simple_proc_tb 
+# Start time: 21:49:29 on Oct 15,2026
+# Loading work.simple_proc_tb
+# Loading work.simple_proc
+# Loading work.register_n
+# Loading work.multiplexer
+# Loading work.ALU
+# Loading work.tick_FSM
+# Loading work.sign_extend
+# ** Warning: (vsim-3017) simple_proc_tb.v(24): [TFMPC] - Too few port connections. Expected 13, found 12.
+#    Time: 0 ps  Iteration: 0  Instance: /simple_proc_tb/DUT File: simple_proc.v
+# ** Warning: (vsim-3722) simple_proc_tb.v(24): [TFMPC] - Missing connection for port 'tick'.
 run -all
-# Break key hit
-# Simulation stop requested.
-# End time: 20:58:37 on Sep 25,2026, Elapsed time: 0:00:58
-# Errors: 0, Warnings: 0
+# T=0 Tick=xxxx Bus=    x R0=    x R1=    x R2=    x
+# T=10000 Tick=0001 Bus=    0 R0=    0 R1=    0 R2=    0
+# T=30000 Tick=0010 Bus=    0 R0=    0 R1=    0 R2=    0
+# T=50000 Tick=0100 Bus=    0 R0=    0 R1=    0 R2=    0
+# T=70000 Tick=1000 Bus=    0 R0=    0 R1=    0 R2=    0
+# T=90000 Tick=0001 Bus=    0 R0=    0 R1=    0 R2=    0
+# T=110000 Tick=0010 Bus=    0 R0=    0 R1=    0 R2=    0
+# After MOVI R0,5
+# R0 =     0
+# T=130000 Tick=0100 Bus=65483 R0=    0 R1=    0 R2=    0
+# T=150000 Tick=1000 Bus=65483 R0=65483 R1=    0 R2=    0
+# T=170000 Tick=0001 Bus=65483 R0=65483 R1=    0 R2=    0
+# T=190000 Tick=0010 Bus=65483 R0=65483 R1=    0 R2=    0
+# T=210000 Tick=0100 Bus=65483 R0=65483 R1=    0 R2=    0
+# After MOVI R1,3
+# R1 =     0
+# T=225000 Tick=0100 Bus=   65 R0=65483 R1=    0 R2=    0
+# T=230000 Tick=1000 Bus=65483 R0=65483 R1=   65 R2=    0
+# T=250000 Tick=0001 Bus=65483 R0=65483 R1=   65 R2=    0
+# T=270000 Tick=0010 Bus=65483 R0=65483 R1=   65 R2=    0
+# T=290000 Tick=0100 Bus=   65 R0=65483 R1=   65 R2=    0
+# T=310000 Tick=1000 Bus=   65 R0=65483 R1=   65 R2=    0
+# After ADD R0,R1
+# R0 = 65483
+# T=330000 Tick=0001 Bus=   65 R0=65483 R1=   65 R2=    0
+# T=350000 Tick=0010 Bus=   65 R0=   65 R1=   65 R2=    0
+# T=370000 Tick=0100 Bus=   65 R0=   65 R1=   65 R2=    0
+# T=390000 Tick=1000 Bus=   65 R0=   65 R1=   65 R2=    0
+# T=410000 Tick=0001 Bus=  130 R0=   65 R1=   65 R2=    0
+# After ADDI R0,2
+# R0 =    65
+# T=430000 Tick=0010 Bus=  130 R0=  130 R1=   65 R2=    0
+# T=450000 Tick=0100 Bus=  193 R0=  130 R1=   65 R2=    0
+# T=470000 Tick=1000 Bus=   65 R0=  130 R1=   65 R2=    0
+# T=490000 Tick=0001 Bus=  128 R0=  130 R1=   65 R2=    0
+# T=510000 Tick=0010 Bus=  128 R0=  128 R1=   65 R2=    0
+# After SUB R0,R1
+# R0 =   128
+# --------------------------------
+# FINAL VALUES:
+# R0 =   128
+# R1 =    65
+# R2 =     0
+# --------------------------------
+# ** Note: $stop    : simple_proc_tb.v(153)
+#    Time: 525 ns  Iteration: 0  Instance: /simple_proc_tb
+# Break in Module simple_proc_tb at simple_proc_tb.v line 153
+# End time: 09:46:27 on Oct 16,2026, Elapsed time: 11:56:58
+# Errors: 0, Warnings: 2
