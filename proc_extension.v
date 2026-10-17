@@ -190,7 +190,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 		
     // instantiate ALU:
     
-	 ALU inst2 (
+	 alu inst2 (
 			.input_a (A_out),
 			.input_b (bus),
 			.alu_op (ALU_OP),
