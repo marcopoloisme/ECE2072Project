@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Sat Oct 17 14:39:08 2026
+Analysis & Synthesis Status : Successful - Sun Oct 18 18:54:37 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ECE2072Project
 Top-level Entity Name : proc_extension_top_level
 Family : MAX 10
-Total logic elements : 733
-    Total combinational functions : 589
+Total logic elements : 834
+    Total combinational functions : 690
     Dedicated logic registers : 189
 Total registers : 189
 Total pins : 70

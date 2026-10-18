@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ECE2072Project
-Sat Oct 17 14:39:09 2026
+Sun Oct 18 18:54:37 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -14,27 +14,33 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis DSP Block Usage Summary
-  9. General Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg0
- 12. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg1
- 13. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg2
- 14. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg3
- 15. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg4
- 16. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg5
- 17. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg6
- 18. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg7
- 19. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:A
- 20. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:G
- 21. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:IR
- 22. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:H
- 23. Parameter Settings for User Entity Instance: proc_extension:manual|Binary_to_BCD:inst6
- 24. Parameter Settings for Inferred Entity Instance: proc_extension:manual|ALU:inst2|lpm_mult:Mult0
- 25. lpm_mult Parameter Settings by Entity Instance
- 26. Port Connectivity Checks: "proc_extension:manual"
- 27. Post-Synthesis Netlist Statistics for Top Partition
- 28. Elapsed Time Per Partition
- 29. Analysis & Synthesis Messages
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg0
+ 13. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg1
+ 14. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg2
+ 15. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg3
+ 16. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg4
+ 17. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg5
+ 18. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg6
+ 19. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:Reg7
+ 20. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:A
+ 21. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:G
+ 22. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:IR
+ 23. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:AddressReg
+ 24. Parameter Settings for User Entity Instance: proc_extension:manual|register_n:H
+ 25. Parameter Settings for User Entity Instance: proc_extension:manual|tick_FSM:inst3
+ 26. Parameter Settings for User Entity Instance: proc_extension:manual|twos_complement:inst5
+ 27. Parameter Settings for User Entity Instance: proc_extension:manual|Binary_to_BCD:inst6
+ 28. Parameter Settings for Inferred Entity Instance: proc_extension:manual|alu:inst2|lpm_mult:Mult0
+ 29. lpm_mult Parameter Settings by Entity Instance
+ 30. Port Connectivity Checks: "proc_extension:manual|tick_to_binary:inst7"
+ 31. Port Connectivity Checks: "proc_extension:manual|multiplexer:inst1"
+ 32. Port Connectivity Checks: "proc_extension:manual"
+ 33. Post-Synthesis Netlist Statistics for Top Partition
+ 34. Elapsed Time Per Partition
+ 35. Analysis & Synthesis Messages
 
 
 
@@ -60,13 +66,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct 17 14:39:08 2026       ;
+; Analysis & Synthesis Status        ; Successful - Sun Oct 18 18:54:37 2026       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ECE2072Project                              ;
 ; Top-level Entity Name              ; proc_extension_top_level                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 733                                         ;
-;     Total combinational functions  ; 589                                         ;
+; Total logic elements               ; 834                                         ;
+;     Total combinational functions  ; 690                                         ;
 ;     Dedicated logic registers      ; 189                                         ;
 ; Total registers                    ; 189                                         ;
 ; Total pins                         ; 70                                          ;
@@ -87,6 +93,7 @@ refer to the applicable agreement for further details.
 ; Device                                                           ; 10M50DAF484C7G           ;                    ;
 ; Top-level entity name                                            ; proc_extension_top_level ; ECE2072Project     ;
 ; Family name                                                      ; MAX 10                   ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation              ; 2                        ;                    ;
 ; Verilog Show LMF Mapping Messages                                ; Off                      ;                    ;
 ; Verilog Version                                                  ; SystemVerilog_2005       ; Verilog_2001       ;
 ; Use smart compilation                                            ; Off                      ; Off                ;
@@ -172,14 +179,14 @@ refer to the applicable agreement for further details.
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
 ; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 12          ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -188,8 +195,8 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                              ; Library ;
 +----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
-; proc_extension.v                 ; yes             ; User Verilog HDL File        ; C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v           ;         ;
 ; components.v                     ; yes             ; User Verilog HDL File        ; C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v               ;         ;
+; proc_extension.v                 ; yes             ; User Verilog HDL File        ; C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v           ;         ;
 ; proc_extension_top_level.v       ; yes             ; User Verilog HDL File        ; C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_top_level.v ;         ;
 ; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mult.tdf       ;         ;
 ; aglobal181.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc     ;         ;
@@ -206,17 +213,17 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimated Total logic elements              ; 733          ;
+; Estimated Total logic elements              ; 834          ;
 ;                                             ;              ;
-; Total combinational functions               ; 589          ;
+; Total combinational functions               ; 690          ;
 ; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 394          ;
-;     -- 3 input functions                    ; 115          ;
-;     -- <=2 input functions                  ; 80           ;
+;     -- 4 input functions                    ; 455          ;
+;     -- 3 input functions                    ; 174          ;
+;     -- <=2 input functions                  ; 61           ;
 ;                                             ;              ;
 ; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 559          ;
-;     -- arithmetic mode                      ; 30           ;
+;     -- normal mode                          ; 602          ;
+;     -- arithmetic mode                      ; 88           ;
 ;                                             ;              ;
 ; Total registers                             ; 189          ;
 ;     -- Dedicated logic registers            ; 189          ;
@@ -228,8 +235,8 @@ refer to the applicable agreement for further details.
 ;                                             ;              ;
 ; Maximum fan-out node                        ; KEY[1]~input ;
 ; Maximum fan-out                             ; 189          ;
-; Total fan-out                               ; 2833         ;
-; Average fan-out                             ; 3.08         ;
+; Total fan-out                               ; 3199         ;
+; Average fan-out                             ; 3.13         ;
 +---------------------------------------------+--------------+
 
 
@@ -238,33 +245,34 @@ refer to the applicable agreement for further details.
 +---------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------------------------------------------+--------------------------+--------------+
 ; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                              ; Entity Name              ; Library Name ;
 +---------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------------------------------------------+--------------------------+--------------+
-; |proc_extension_top_level             ; 589 (0)             ; 189 (0)                   ; 0           ; 0          ; 2            ; 0       ; 1         ; 70   ; 0            ; 0          ; |proc_extension_top_level                                                                        ; proc_extension_top_level ; work         ;
-;    |proc_extension:manual|            ; 589 (30)            ; 189 (0)                   ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual                                                  ; proc_extension           ; work         ;
-;       |ALU:inst2|                     ; 127 (127)           ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|ALU:inst2                                        ; ALU                      ; work         ;
-;          |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|ALU:inst2|lpm_mult:Mult0                         ; lpm_mult                 ; work         ;
-;             |mult_tns:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|ALU:inst2|lpm_mult:Mult0|mult_tns:auto_generated ; mult_tns                 ; work         ;
+; |proc_extension_top_level             ; 690 (0)             ; 189 (0)                   ; 0           ; 0          ; 2            ; 0       ; 1         ; 70   ; 0            ; 0          ; |proc_extension_top_level                                                                        ; proc_extension_top_level ; work         ;
+;    |proc_extension:manual|            ; 690 (30)            ; 189 (0)                   ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual                                                  ; proc_extension           ; work         ;
 ;       |BCD:sevensegment0|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment0                                ; BCD                      ; work         ;
 ;       |BCD:sevensegment1|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment1                                ; BCD                      ; work         ;
 ;       |BCD:sevensegment2|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment2                                ; BCD                      ; work         ;
 ;       |BCD:sevensegment3|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment3                                ; BCD                      ; work         ;
 ;       |BCD:sevensegment4|             ; 8 (8)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment4                                ; BCD                      ; work         ;
-;       |BCD:sevensegment5|             ; 4 (4)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment5                                ; BCD                      ; work         ;
-;       |Binary_to_BCD:inst6|           ; 137 (137)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|Binary_to_BCD:inst6                              ; Binary_to_BCD            ; work         ;
-;       |multiplexer:inst1|             ; 99 (99)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|multiplexer:inst1                                ; multiplexer              ; work         ;
+;       |BCD:sevensegment5|             ; 3 (3)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|BCD:sevensegment5                                ; BCD                      ; work         ;
+;       |Binary_to_BCD:inst6|           ; 139 (139)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|Binary_to_BCD:inst6                              ; Binary_to_BCD            ; work         ;
+;       |alu:inst2|                     ; 159 (159)           ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|alu:inst2                                        ; alu                      ; work         ;
+;          |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|alu:inst2|lpm_mult:Mult0                         ; lpm_mult                 ; work         ;
+;             |mult_tns:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 2            ; 0       ; 1         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|alu:inst2|lpm_mult:Mult0|mult_tns:auto_generated ; mult_tns                 ; work         ;
+;       |multiplexer:inst1|             ; 118 (118)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|multiplexer:inst1                                ; multiplexer              ; work         ;
 ;       |register_n:A|                  ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:A                                     ; register_n               ; work         ;
-;       |register_n:G|                  ; 107 (107)           ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:G                                     ; register_n               ; work         ;
+;       |register_n:G|                  ; 126 (126)           ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:G                                     ; register_n               ; work         ;
 ;       |register_n:H|                  ; 7 (7)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:H                                     ; register_n               ; work         ;
 ;       |register_n:IR|                 ; 10 (10)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:IR                                    ; register_n               ; work         ;
-;       |register_n:Reg0|               ; 11 (11)             ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg0                                  ; register_n               ; work         ;
+;       |register_n:Reg0|               ; 12 (12)             ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg0                                  ; register_n               ; work         ;
 ;       |register_n:Reg1|               ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg1                                  ; register_n               ; work         ;
 ;       |register_n:Reg2|               ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg2                                  ; register_n               ; work         ;
-;       |register_n:Reg3|               ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg3                                  ; register_n               ; work         ;
+;       |register_n:Reg3|               ; 2 (2)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg3                                  ; register_n               ; work         ;
 ;       |register_n:Reg4|               ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg4                                  ; register_n               ; work         ;
 ;       |register_n:Reg5|               ; 2 (2)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg5                                  ; register_n               ; work         ;
 ;       |register_n:Reg6|               ; 2 (2)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg6                                  ; register_n               ; work         ;
 ;       |register_n:Reg7|               ; 1 (1)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|register_n:Reg7                                  ; register_n               ; work         ;
 ;       |tick_FSM:inst3|                ; 4 (4)               ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|tick_FSM:inst3                                   ; tick_FSM                 ; work         ;
-;       |tick_to_binary:inst7|          ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|tick_to_binary:inst7                             ; tick_to_binary           ; work         ;
+;       |tick_to_binary:inst7|          ; 4 (4)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|tick_to_binary:inst7                             ; tick_to_binary           ; work         ;
+;       |twos_complement:inst5|         ; 31 (31)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |proc_extension_top_level|proc_extension:manual|twos_complement:inst5                            ; twos_complement          ; work         ;
 +---------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------------------------------------------+--------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -287,6 +295,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
 
 
++-----------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                            ;
++------------------------------------------------------+----------------------------------------+
+; Register name                                        ; Reason for Removal                     ;
++------------------------------------------------------+----------------------------------------+
+; proc_extension:manual|register_n:AddressReg|Q[0..15] ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 16               ;                                        ;
++------------------------------------------------------+----------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
@@ -294,7 +312,7 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +----------------------------------------------+-------+
 ; Total registers                              ; 189   ;
 ; Number of registers using Synchronous Clear  ; 9     ;
-; Number of registers using Synchronous Load   ; 9     ;
+; Number of registers using Synchronous Load   ; 1     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 189   ;
@@ -302,33 +320,34 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg0|Q[11]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg1|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg2|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg3|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg4|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg5|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg6|Q[7]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg7|Q[11]   ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:IR|Q[7]      ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|tick_FSM:inst3|tick[1]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:H|Q[6]       ;
-; 16:1               ; 4 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[7]       ;
-; 16:1               ; 4 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[10]      ;
-; 17:1               ; 2 bits    ; 22 LEs        ; 12 LEs               ; 10 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[2]       ;
-; 17:1               ; 2 bits    ; 22 LEs        ; 12 LEs               ; 10 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[13]      ;
-; 18:1               ; 2 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[1]       ;
-; 18:1               ; 2 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[14]      ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:A|Q[12]      ;
-; 10:1               ; 16 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |proc_extension_top_level|proc_extension:manual|multiplexer:inst1|Mux12 ;
-; 24:1               ; 8 bits    ; 128 LEs       ; 8 LEs                ; 120 LEs                ; No         ; |proc_extension_top_level|proc_extension:manual|Selector0               ;
-; 16:1               ; 2 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; No         ; |proc_extension_top_level|proc_extension:manual|Mux16                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg0|Q[0]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg1|Q[10]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg2|Q[5]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg3|Q[10]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg4|Q[10]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg5|Q[14]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg6|Q[5]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:Reg7|Q[1]   ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:IR|Q[7]     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|tick_FSM:inst3|tick[0] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:H|Q[2]      ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 24 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[4]      ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 24 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[8]      ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 16 LEs               ; 6 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[3]      ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 16 LEs               ; 6 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[12]     ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[1]      ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:G|Q[14]     ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |proc_extension_top_level|proc_extension:manual|register_n:A|Q[10]     ;
+; 16:1               ; 8 bits    ; 80 LEs        ; 56 LEs               ; 24 LEs                 ; No         ; |proc_extension_top_level|proc_extension:manual|multiplexer:inst1|Mux8 ;
+; 24:1               ; 8 bits    ; 128 LEs       ; 8 LEs                ; 120 LEs                ; No         ; |proc_extension_top_level|proc_extension:manual|Selector0              ;
+; 13:1               ; 8 bits    ; 64 LEs        ; 56 LEs               ; 8 LEs                  ; No         ; |proc_extension_top_level|proc_extension:manual|multiplexer:inst1|Mux2 ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; No         ; |proc_extension_top_level|proc_extension:manual|Mux15                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------+
@@ -441,6 +460,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: proc_extension:manual|register_n:AddressReg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; N              ; 16    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +---------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: proc_extension:manual|register_n:H ;
 +----------------+-------+--------------------------------------------------------+
@@ -448,6 +477,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+--------------------------------------------------------+
 ; N              ; 16    ; Signed Integer                                         ;
 +----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: proc_extension:manual|tick_FSM:inst3 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; NUM_TICKS      ; 4     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: proc_extension:manual|twos_complement:inst5 ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; N              ; 16    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -463,7 +512,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: proc_extension:manual|ALU:inst2|lpm_mult:Mult0 ;
+; Parameter Settings for Inferred Entity Instance: proc_extension:manual|alu:inst2|lpm_mult:Mult0 ;
 +------------------------------------------------+----------+-------------------------------------+
 ; Parameter Name                                 ; Value    ; Type                                ;
 +------------------------------------------------+----------+-------------------------------------+
@@ -503,7 +552,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Name                                  ; Value                                          ;
 +---------------------------------------+------------------------------------------------+
 ; Number of entity instances            ; 1                                              ;
-; Entity Instance                       ; proc_extension:manual|ALU:inst2|lpm_mult:Mult0 ;
+; Entity Instance                       ; proc_extension:manual|alu:inst2|lpm_mult:Mult0 ;
 ;     -- LPM_WIDTHA                     ; 16                                             ;
 ;     -- LPM_WIDTHB                     ; 16                                             ;
 ;     -- LPM_WIDTHP                     ; 32                                             ;
@@ -515,6 +564,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- INPUT_A_FIXED_VALUE            ; Bx                                             ;
 ;     -- INPUT_B_FIXED_VALUE            ; Bx                                             ;
 +---------------------------------------+------------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc_extension:manual|tick_to_binary:inst7" ;
++------------+-------+----------+----------------------------------------+
+; Port       ; Type  ; Severity ; Details                                ;
++------------+-------+----------+----------------------------------------+
+; tick[7..4] ; Input ; Info     ; Stuck at GND                           ;
++------------+-------+----------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc_extension:manual|multiplexer:inst1"                                                                                                    ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                      ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Add1 ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------+
@@ -542,24 +609,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; boundary_port         ; 70                          ;
 ; cycloneiii_ff         ; 189                         ;
 ;     ENA               ; 179                         ;
-;     ENA SCLR          ; 1                           ;
-;     ENA SCLR SLD      ; 8                           ;
+;     ENA SCLR          ; 9                           ;
 ;     ENA SLD           ; 1                           ;
-; cycloneiii_lcell_comb ; 622                         ;
-;     arith             ; 30                          ;
-;         2 data inputs ; 13                          ;
-;         3 data inputs ; 17                          ;
-;     normal            ; 592                         ;
+; cycloneiii_lcell_comb ; 727                         ;
+;     arith             ; 88                          ;
+;         2 data inputs ; 28                          ;
+;         3 data inputs ; 60                          ;
+;     normal            ; 639                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 33                          ;
-;         2 data inputs ; 66                          ;
-;         3 data inputs ; 98                          ;
-;         4 data inputs ; 394                         ;
+;         1 data inputs ; 38                          ;
+;         2 data inputs ; 31                          ;
+;         3 data inputs ; 114                         ;
+;         4 data inputs ; 455                         ;
 ; cycloneiii_mac_mult   ; 1                           ;
 ; cycloneiii_mac_out    ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 16.00                       ;
-; Average LUT depth     ; 11.90                       ;
+; Max LUT depth         ; 19.40                       ;
+; Average LUT depth     ; 13.68                       ;
 +-----------------------+-----------------------------+
 
 
@@ -568,7 +634,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:06     ;
+; Top            ; 00:00:03     ;
 +----------------+--------------+
 
 
@@ -578,10 +644,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Oct 17 14:38:48 2026
+    Info: Processing started: Sun Oct 18 18:54:18 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ECE2072Project -c ECE2072Project
-Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20032): Parallel compilation is enabled and will use up to 2 processors
+Info (12021): Found 10 design units, including 10 entities, in source file components.v
+    Info (12023): Found entity 1: sign_extend File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 12
+    Info (12023): Found entity 2: tick_FSM File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 22
+    Info (12023): Found entity 3: multiplexer File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 59
+    Info (12023): Found entity 4: alu File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 98
+    Info (12023): Found entity 5: register_n File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 133
+    Info (12023): Found entity 6: Binary_to_BCD File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 165
+    Info (12023): Found entity 7: tick_to_binary File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 210
+    Info (12023): Found entity 8: twos_complement File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 231
+    Info (12023): Found entity 9: BCD File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 252
+    Info (12023): Found entity 10: PC_increment File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 271
+Info (12021): Found 1 design units, including 1 entities, in source file proc_memory.v
+    Info (12023): Found entity 1: proc_memory File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_memory.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file bcd_top_level.v
     Info (12023): Found entity 1: BCD_top_level File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/BCD_top_level.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file simple_proc_tb.v
@@ -591,45 +669,34 @@ Info (12021): Found 1 design units, including 1 entities, in source file simple_
 Info (12021): Found 1 design units, including 1 entities, in source file proc_extension.v
     Info (12023): Found entity 1: proc_extension File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file components_tb.v
-    Info (12023): Found entity 1: components_tb File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components_tb.v Line: 10
-Info (12021): Found 9 design units, including 9 entities, in source file components.v
-    Info (12023): Found entity 1: sign_extend File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 11
-    Info (12023): Found entity 2: tick_FSM File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 21
-    Info (12023): Found entity 3: multiplexer File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 43
-    Info (12023): Found entity 4: ALU File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 78
-    Info (12023): Found entity 5: register_n File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 108
-    Info (12023): Found entity 6: Binary_to_BCD File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 140
-    Info (12023): Found entity 7: tick_to_binary File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 185
-    Info (12023): Found entity 8: twos_complement File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 202
-    Info (12023): Found entity 9: BCD File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 223
+    Info (12023): Found entity 1: components_tb File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components_tb.v Line: 15
 Info (12021): Found 1 design units, including 1 entities, in source file simple_proc.v
     Info (12023): Found entity 1: simple_proc File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc.v Line: 8
 Info (12021): Found 1 design units, including 1 entities, in source file proc_extension_top_level.v
     Info (12023): Found entity 1: proc_extension_top_level File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_top_level.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file proc_memory_top_level.v
+    Info (12023): Found entity 1: proc_memory_top_level File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_memory_top_level.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file addressmemory.v
+    Info (12023): Found entity 1: addressMemory File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/addressMemory.v Line: 39
 Info (12127): Elaborating entity "proc_extension_top_level" for the top level hierarchy
 Info (12128): Elaborating entity "proc_extension" for hierarchy "proc_extension:manual" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_top_level.v Line: 60
-Info (10264): Verilog HDL Case Statement information at proc_extension.v(285): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 285
-Info (12128): Elaborating entity "register_n" for hierarchy "proc_extension:manual|register_n:Reg0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 83
-Info (12128): Elaborating entity "register_n" for hierarchy "proc_extension:manual|register_n:IR" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 163
-Info (12128): Elaborating entity "multiplexer" for hierarchy "proc_extension:manual|multiplexer:inst1" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 188
-Info (12128): Elaborating entity "ALU" for hierarchy "proc_extension:manual|ALU:inst2" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 198
-Warning (10764): Verilog HDL warning at components.v(93): converting signed shift amount to unsigned File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 93
-Info (12128): Elaborating entity "tick_FSM" for hierarchy "proc_extension:manual|tick_FSM:inst3" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 207
-Info (10264): Verilog HDL Case Statement information at components.v(32): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 32
-Info (12128): Elaborating entity "sign_extend" for hierarchy "proc_extension:manual|sign_extend:inst4" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 214
-Info (12128): Elaborating entity "Binary_to_BCD" for hierarchy "proc_extension:manual|Binary_to_BCD:inst6" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 221
-Warning (10230): Verilog HDL assignment warning at components.v(161): truncated value with size 32 to match size of target (4) File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 161
-Warning (10230): Verilog HDL assignment warning at components.v(164): truncated value with size 32 to match size of target (4) File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 164
-Warning (10230): Verilog HDL assignment warning at components.v(167): truncated value with size 32 to match size of target (4) File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 167
-Warning (10230): Verilog HDL assignment warning at components.v(170): truncated value with size 32 to match size of target (4) File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 170
-Warning (10230): Verilog HDL assignment warning at components.v(173): truncated value with size 32 to match size of target (4) File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 173
-Info (12128): Elaborating entity "tick_to_binary" for hierarchy "proc_extension:manual|tick_to_binary:inst7" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 227
-Info (10264): Verilog HDL Case Statement information at components.v(190): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 190
-Info (12128): Elaborating entity "BCD" for hierarchy "proc_extension:manual|BCD:sevensegment0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 234
+Info (10264): Verilog HDL Case Statement information at proc_extension.v(299): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 299
+Info (12128): Elaborating entity "register_n" for hierarchy "proc_extension:manual|register_n:Reg0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 81
+Info (12128): Elaborating entity "register_n" for hierarchy "proc_extension:manual|register_n:IR" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 161
+Info (12128): Elaborating entity "multiplexer" for hierarchy "proc_extension:manual|multiplexer:inst1" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 195
+Info (12128): Elaborating entity "alu" for hierarchy "proc_extension:manual|alu:inst2" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 205
+Info (12128): Elaborating entity "tick_FSM" for hierarchy "proc_extension:manual|tick_FSM:inst3" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 214
+Info (10264): Verilog HDL Case Statement information at components.v(47): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 47
+Info (12128): Elaborating entity "sign_extend" for hierarchy "proc_extension:manual|sign_extend:inst4" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 221
+Info (12128): Elaborating entity "twos_complement" for hierarchy "proc_extension:manual|twos_complement:inst5" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 228
+Info (12128): Elaborating entity "Binary_to_BCD" for hierarchy "proc_extension:manual|Binary_to_BCD:inst6" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 233
+Info (12128): Elaborating entity "tick_to_binary" for hierarchy "proc_extension:manual|tick_to_binary:inst7" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 239
+Info (10264): Verilog HDL Case Statement information at components.v(215): all case item expressions in this case statement are onehot File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 215
+Info (12128): Elaborating entity "BCD" for hierarchy "proc_extension:manual|BCD:sevensegment0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v Line: 248
 Info (278001): Inferred 1 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "proc_extension:manual|ALU:inst2|Mult0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 88
-Info (12130): Elaborated megafunction instantiation "proc_extension:manual|ALU:inst2|lpm_mult:Mult0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 88
-Info (12133): Instantiated megafunction "proc_extension:manual|ALU:inst2|lpm_mult:Mult0" with the following parameter: File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 88
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "proc_extension:manual|alu:inst2|Mult0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 108
+Info (12130): Elaborated megafunction instantiation "proc_extension:manual|alu:inst2|lpm_mult:Mult0" File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 108
+Info (12133): Instantiated megafunction "proc_extension:manual|alu:inst2|lpm_mult:Mult0" with the following parameter: File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v Line: 108
     Info (12134): Parameter "LPM_WIDTHA" = "16"
     Info (12134): Parameter "LPM_WIDTHB" = "16"
     Info (12134): Parameter "LPM_WIDTHP" = "32"
@@ -641,20 +708,19 @@ Info (12133): Instantiated megafunction "proc_extension:manual|ALU:inst2|lpm_mul
     Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_tns.tdf
     Info (12023): Found entity 1: mult_tns File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/db/mult_tns.tdf Line: 28
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_top_level.v Line: 12
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 822 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 924 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 12 input pins
     Info (21059): Implemented 58 output pins
-    Info (21061): Implemented 750 logic cells
+    Info (21061): Implemented 852 logic cells
     Info (21062): Implemented 2 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 4840 megabytes
-    Info: Processing ended: Sat Oct 17 14:39:09 2026
-    Info: Elapsed time: 00:00:21
-    Info: Total CPU time (on all processors): 00:00:37
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4761 megabytes
+    Info: Processing ended: Sun Oct 18 18:54:37 2026
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:36
 
 

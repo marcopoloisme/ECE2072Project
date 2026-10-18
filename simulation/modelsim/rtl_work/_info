@@ -8,38 +8,37 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/mvmya/Documents/GitHub/ECE2072Project/simulation/modelsim
-vALU
+valu
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1792061228
+Z2 !s110 1792209771
 !i10b 1
-!s100 =aKBZDdJ1oA5ikRYb4;_10
-IG=mB]M>8N`9o]L0ibQkIh2
+!s100 N=iPH=i2Hkg4SHf_gZ?Z22
+IQNT5fo]zC@Yn_nW1fhBZn2
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 Z4 !s105 components_v_unit
 S1
 R0
-Z5 w1792059341
+Z5 w1792208829
 Z6 8C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v
 Z7 FC:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v
-L0 78
+L0 79
 Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1792061228.000000
+Z9 !s108 1792209771.000000
 Z10 !s107 C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v|
 Z11 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project|C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v|
 !i113 1
 Z12 o-sv -work work
 Z13 !s92 -sv -work work +incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project
 Z14 tCvgOpt 0
-n@a@l@u
 vBCD
 R1
 R2
 !i10b 1
-!s100 _a;`ZUbU6OO859;J?`2AO3
-I1je4e0DhUGhS9GSfo=EK=0
+!s100 fI@VROeUR<@=0V?_nC>8Q2
+ICJH>QMOImPcoQR1ndRKf13
 R3
 R4
 S1
@@ -47,7 +46,7 @@ R0
 R5
 R6
 R7
-L0 321
+L0 224
 R8
 r1
 !s85 0
@@ -64,8 +63,8 @@ vBinary_to_BCD
 R1
 R2
 !i10b 1
-!s100 iSeT1V2X0NHFVVhTLK5UG1
-IWehKdYkho1UbGCk[A6G_F1
+!s100 PE4Y>9@0hThe6BAl4Lh;11
+INJangiWEJ4ehJ153:]]BN2
 R3
 R4
 S1
@@ -73,7 +72,7 @@ R0
 R5
 R6
 R7
-L0 144
+L0 141
 R8
 r1
 !s85 0
@@ -90,8 +89,8 @@ vmultiplexer
 R1
 R2
 !i10b 1
-!s100 Jm:l_Qm7@lUekd8X?0<iA3
-IB9_fJfO8Jd_MVYWZC^HT>1
+!s100 m5=XX8B_kh9mIoM;?3PL10
+I@faSNYEddSnYAEzGTNTN22
 R3
 R4
 S1
@@ -99,7 +98,7 @@ R0
 R5
 R6
 R7
-L0 43
+L0 44
 R8
 r1
 !s85 0
@@ -111,12 +110,37 @@ R11
 R12
 R13
 R14
+vproc_extension
+R1
+R2
+!i10b 1
+!s100 j9Vi9bRzdPbE>6>QWVnUH0
+I2lFbK;DaaaV=5ADmoC80k2
+R3
+!s105 proc_extension_v_unit
+S1
+R0
+w1792209536
+8C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v
+FC:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v
+L0 9
+R8
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project|C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v|
+!i113 1
+R12
+R13
+R14
 vregister_n
 R1
 R2
 !i10b 1
-!s100 A_ZHeUmD;U8hi^N6C0hBS3
-IkX[XJ>YY9DzIfaUB^46Xm1
+!s100 N;6<^Tjecj0_laE:NYUac1
+Icj74L[RJj5o@Rn5[eC2oW1
 R3
 R4
 S1
@@ -124,7 +148,7 @@ R0
 R5
 R6
 R7
-L0 108
+L0 109
 R8
 r1
 !s85 0
@@ -140,8 +164,8 @@ vsign_extend
 R1
 R2
 !i10b 1
-!s100 DC`Sc`bC3EkBhQMWMF7=k0
-I@H2melHokm2H0@BzD3^z<2
+!s100 57fP62dFH?zZJfV3[H>jf2
+IN>7c:Rf7^6;PdKJUf[8`S0
 R3
 R4
 S1
@@ -149,7 +173,7 @@ R0
 R5
 R6
 R7
-L0 11
+L0 12
 R8
 r1
 !s85 0
@@ -161,37 +185,12 @@ R11
 R12
 R13
 R14
-vsimple_proc_top_level
-R1
-R2
-!i10b 1
-!s100 bJNn1gZ;;oc>I1U@^n6dD2
-InAKaLi3cOR720:@aXYkQ:1
-R3
-!s105 simple_proc_top_level_v_unit
-S1
-R0
-w1792059929
-8C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v
-FC:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v
-L0 1
-R8
-r1
-!s85 0
-31
-R9
-!s107 C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/mvmya/Documents/GitHub/ECE2072Project|C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v|
-!i113 1
-R12
-R13
-R14
 vtick_FSM
 R1
 R2
 !i10b 1
-!s100 A7a5KSJC<WH58AXH^ZC9>3
-IbK5E]lAbFeHhfcFB<Y0o01
+!s100 zh_3ciS3OfOzJQ6C`>g1>0
+IYi_cjeaP8>nPd^[UO2=dF1
 R3
 R4
 S1
@@ -199,7 +198,7 @@ R0
 R5
 R6
 R7
-L0 21
+L0 22
 R8
 r1
 !s85 0

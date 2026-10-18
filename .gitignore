@@ -11,3 +11,4 @@
 *.vcd
 *.db_info
 *.flock
+*.cnf
