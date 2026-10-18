@@ -23,25 +23,31 @@ module tick_FSM(
     input enable,
     input rst,
     input clk,
-    output reg [3:0] tick
+    output reg [7:0] tick
 );
+
+	
 	always @(posedge clk) begin //clock ticking 
 		if (rst) begin //check the reset value first, if reset = 1 then set tick to 0001. 
-            tick <= 4'b0001;
+            tick <= 8'b00000001;
         end
         else if (enable) begin
             case (tick)
-                4'b0001: tick <= 4'b0010;
-                4'b0010: tick <= 4'b0100;
-                4'b0100: tick <= 4'b1000;
-                4'b1000: tick <= 4'b0001;
-                default: tick <= 4'b0001; //if the tick is an invalid value, it will revert it back to 0001, safety case. 
+                8'b00000001: tick <= 8'b00000010;
+                8'b00000010: tick <= 8'b00000100;
+                8'b00000100: tick <= 8'b00001000;
+                8'b00001000: tick <= 8'b00010000;
+					 8'b00010000: tick <= 8'b00100000;
+					 8'b00100000: tick <= 8'b01000000;
+					 8'b01000000: tick <= 8'b10000000;
+					 8'b10000000: tick <= 8'b00000001;
+                default: tick <= 8'b00000001; //if the tick is an invalid value, it will revert it back to 0001, safety case. 
             endcase
         end
     end
 endmodule
 
-module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
+module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G,PC, Add1, sel, Bus);
     input  wire [15:0] SignExtDin;
     input  wire [15:0] R0;
     input  wire [15:0] R1;
@@ -52,6 +58,8 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
     input  wire [15:0] R6;
     input  wire [15:0] R7;
     input  wire [15:0] G;
+    input  wire [15:0] PC;
+    input  wire [15:0] Add1;
     input  wire [3:0]  sel;
     output reg  [15:0] Bus;
 
@@ -68,6 +76,8 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
             4'd7: Bus = R7;
             4'd8: Bus = G;
             4'd9: Bus = SignExtDin;
+            4'd10:Bus = PC;
+            4'd11:Bus = Add1;
             default: Bus = 16'hXXXX;
         endcase
     end
@@ -136,7 +146,7 @@ module register_n(data_in, r_in, clk, Q, rst);
 	end
 endmodule 
 
-
+//task 3 modules
 
 module Binary_to_BCD
 #(
@@ -184,16 +194,20 @@ endmodule
 
 
 module tick_to_binary (
-	input [3:0] tick,
+	input [7:0] tick,
 	output reg [3:0] result
 	);
 	always @(*) begin //clock ticking 
 		case (tick)
-			 4'b0001: result <= 4'd0;
-			 4'b0010: result <= 4'd1;
-			 4'b0100: result <= 4'd2;
-			 4'b1000: result <= 4'd3;
-			 default: result <= 4'd0; 
+			 8'b00000001: result = 4'd0;
+			 8'b00000010: result = 4'd1;
+			 8'b00000100: result = 4'd2;
+			 8'b00001000: result = 4'd3;
+			 8'b00010000: result = 4'd4;
+			 8'b00100000: result = 4'd5;
+			 8'b01000000: result = 4'd6;
+			 8'b10000000: result = 4'd7;
+			 default: result = 4'd0; 
 		endcase
 	end
 endmodule
@@ -237,4 +251,29 @@ assign X[6] = ~((data[1]&~data[2]&~data[3])|~data[1]&(data[2]^data[3])|data[1]&~
 assign X[7] = ~negative;
 
 endmodule
+
+//task 4 modules
+
+module PC_increment(
+	input [15:0] PC_in,
+	input enable,
+	output reg [15:0] PC_out
+	);
+	
+	
+	always @(*)
+		begin
+			if (enable == 1'b1)
+				begin
+					PC_out = PC_in  + 16'b1;
+				end
+			else
+				begin
+					PC_out = PC_in;
+				end
+		end
+
+endmodule
+
+
 

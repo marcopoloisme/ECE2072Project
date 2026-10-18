@@ -14,8 +14,8 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	input clk;
 	input rst;
 	input enable;
-	input  [8:0] din;
-	output [15:0]bus;
+	input  [8:0]  din;
+	output [15:0] bus;
 	output [15:0] R0;
 	output [15:0] R1;
 	output [15:0] R2;
@@ -24,16 +24,16 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	output [15:0] R5;
 	output [15:0] R6; 
 	output [15:0] R7;
-	output [7:0] sevenSeg0;
-	output [7:0] sevenSeg1;
-	output [7:0] sevenSeg2;
-	output [7:0] sevenSeg3;
-	output [7:0] sevenSeg4;
-	output [7:0] sevenSeg5;
-	
-    // declare wires:
-    
-	
+  	output [7:0]  sevenSeg0;
+	output [7:0]  sevenSeg1;
+	output [7:0]  sevenSeg2;
+	output [7:0]  sevenSeg3;
+	output [7:0]  sevenSeg4;
+	output [7:0]  sevenSeg5;
+
+
+   
+	//register control
 	reg R0_in;
 	reg R1_in;
 	reg R2_in;
@@ -42,39 +42,36 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	reg R5_in;
 	reg R6_in;
 	reg R7_in;
+	reg pc_in;
+	reg A_in;	
+	reg  G_in;
+	reg IR_in;
+	reg H_in;
+	
+	
+	//non primary register / components outputs
 	
 	wire [15:0] signExtDin;
-	
-	reg [3:0] bus_control;
-	
-	reg A_in;	
 	wire [15:0] A_out;
-	
-	reg [2:0] ALU_OP;
-	wire [15:0] ALU_out;
-	
-	reg  G_in;
 	wire [15:0] G_out;
-	
-	reg IR_in;
-	wire [8:0] CU_in;
-	
-	wire [3:0] tick;
-	
-	reg H_in;
 	wire [15:0] H_out;
-	
-	
+	wire [15:0] ALU_out;
+	wire [7:0] tick;
 	wire [3:0] tickOutput;
-	wire negative;
-	assign negative = H_out[15];
 	wire [15:0] unsignOut;
 	wire [19:0] sevenSeg;
+	wire negative;
 	
+	// controls
+	
+	reg [3:0] bus_control;
+	reg [2:0] ALU_OP;
+	wire [8:0] CU_in;
+
 
 	
     // instantiate registers:
-    register_n #(.N(16)) Reg0 (
+   register_n #(.N(16)) Reg0 (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
@@ -82,7 +79,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (R0)
     );
 	 
-    register_n #(.N(16)) Reg1 (
+   register_n #(.N(16)) Reg1 (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
@@ -90,7 +87,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (R1)
     );
 	 
-	 register_n #(.N(16)) Reg2 (
+	register_n #(.N(16)) Reg2 (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
@@ -98,7 +95,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (R2)
     );
 	 
-	 register_n #(.N(16)) Reg3 (
+	register_n #(.N(16)) Reg3 (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
@@ -106,7 +103,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (R3)
     );
 	 
-	 register_n #(.N(16)) Reg4 (
+	register_n #(.N(16)) Reg4 (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
@@ -138,7 +135,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (R7)
     );
 	 
-	 register_n #(.N(16)) A (
+	register_n #(.N(16)) A (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
@@ -146,7 +143,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (A_out)
     );
 	 
-	 register_n #(.N(16)) G (
+	register_n #(.N(16)) G (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (ALU_out),
@@ -154,15 +151,17 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (G_out)
     );
     
-	 register_n #(.N(9)) IR (
+	register_n #(.N(9)) IR (
         .clk  (clk), 
         .rst  (rst), 
-        .data_in (din),
+       .data_in (din),
 		  .r_in (IR_in),
         .Q    (CU_in)
     );
+
+
 	 
-	 register_n #(.N(16)) H (
+	register_n #(.N(16)) H (
         .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
@@ -183,6 +182,8 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 			.R6 (R6),
 			.R7 (R7),
 			.G (G_out),
+			.PC (PC),
+			.Add1 (ADD1),
 			.sel (bus_control), 
 			.Bus (bus)
 		);
@@ -214,18 +215,25 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	);
 	
 
+	twos_complement inst5 (
+		.data_in (H_out),
+		.negative (negative),
+		.data_out (unsignOut)
+		);
 	
 	Binary_to_BCD #(.N(16), .N2 (5)) inst6 (
-		.data_in (H_out),
+		.data_in (unsignOut),
 		.result (sevenSeg)
 		);
 	
-	// tick BCD
+
 	tick_to_binary inst7 (
 		.tick (tick),
 		.result (tickOutput)
 		);
 	
+	
+
 			
 	BCD sevensegment0 (
 		.data (sevenSeg[3:0]),
