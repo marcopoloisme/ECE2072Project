@@ -1,0 +1,32 @@
+Quartus Prime Archive log --	C:/Users/mvmya/Documents/GitHub/ECE2072Project/ECE2072Project.qarlog
+
+Archive:	C:/Users/mvmya/Documents/GitHub/ECE2072Project/ECE2072Project.qar
+Date:		Sun Oct 18 19:38:11 2026
+Quartus Prime		18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/BCD_top_level.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/ECE2072Project.qpf
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/ECE2072Project.qsf
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/addressMemory.qip
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/addressMemory.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/addressMemory_bb.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/components.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/components_tb.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/db/ECE2072Project.cmp.rdb
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/memory.mif
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_tb.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_extension_top_level.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_memory.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/proc_memory_top_level.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/register_n_tb.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_tb.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/simple_proc_top_level.v
+C:/Users/mvmya/Documents/GitHub/ECE2072Project/task3_tb.v
+c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 21 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

@@ -1,0 +1,96 @@
+Archive Project report for ECE2072Project
+Sun Oct 18 19:38:11 2026
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------+
+; Archive Project Summary                                        ;
++------------------------+---------------------------------------+
+; Archive Project Status ; Successful - Sun Oct 18 19:38:11 2026 ;
+; Revision Name          ; ECE2072Project                        ;
+; Top-level Entity Name  ; proc_memory_top_level                 ;
+; Family                 ; MAX 10                                ;
++------------------------+---------------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Source control' contains:
+    Info: Project source and settings files
+    Info: Automatically detected source files
+Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
+Info: Archive will store files relative to the closest common parent directory
+Info (13213): Using common directory C:/Users/mvmya/Documents/GitHub/ECE2072Project/
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated archive 'C:/Users/mvmya/Documents/GitHub/ECE2072Project/ECE2072Project.qar'
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated report 'ECE2072Project.archive.rpt'
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/18.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4866 megabytes
+    Info: Processing ended: Sun Oct 18 19:38:12 2026
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:02
+
+
++--------------------------------------------------------------+
+; Files Archived                                               ;
++--------------------------------------------------------------+
+; File Name                                                    ;
++--------------------------------------------------------------+
+; addressMemory.qip                                            ;
+; addressMemory.v                                              ;
+; addressMemory_bb.v                                           ;
+; BCD_top_level.v                                              ;
+; c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf ;
+; components.v                                                 ;
+; components_tb.v                                              ;
+; db/ECE2072Project.cmp.rdb                                    ;
+; ECE2072Project.qpf                                           ;
+; ECE2072Project.qsf                                           ;
+; memory.mif                                                   ;
+; proc_extension.v                                             ;
+; proc_extension_tb.v                                          ;
+; proc_extension_top_level.v                                   ;
+; proc_memory.v                                                ;
+; proc_memory_top_level.v                                      ;
+; register_n_tb.v                                              ;
+; simple_proc.v                                                ;
+; simple_proc_tb.v                                             ;
+; simple_proc_top_level.v                                      ;
+; task3_tb.v                                                   ;
++--------------------------------------------------------------+
+
+
