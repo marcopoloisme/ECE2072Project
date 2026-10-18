@@ -86,7 +86,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 	
     // instantiate registers:
     shift_register #(.N(16)) Reg0 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R0_in),
@@ -94,7 +94,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
     shift_register #(.N(16)) Reg1 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R1_in),
@@ -102,7 +102,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg2 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R2_in),
@@ -110,7 +110,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg3 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R3_in),
@@ -118,7 +118,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg4 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R4_in),
@@ -126,7 +126,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg5 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (R5_in), 
@@ -134,7 +134,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg6 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R6_in),
@@ -142,7 +142,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) Reg7 (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus), 
 		  .r_in (R7_in),
@@ -150,7 +150,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) A (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (A_in),
@@ -158,7 +158,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) G (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (ALU_out),
 		  .r_in (G_in),
@@ -166,7 +166,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
     
 	 	 shift_register #(.N(9)) IR (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
        .data_in (din),
 		  .r_in (IR_in),
@@ -190,7 +190,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     );
 	 
 	 shift_register #(.N(16)) H (
-        .clk  (clk_signal), 
+        .clk  (clk), 
         .rst  (rst), 
         .data_in (bus),
 		  .r_in (H_in),
@@ -305,7 +305,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 		.negative (negative),
 		.result (sevenSeg5)
 		);
-  always @(posedge clk_signal) begin
+  always @(posedge clk) begin
 	// TODO: Turn off all control signals:
 		IR_in <= 1'b0;
 		enable<= 1'b0;
