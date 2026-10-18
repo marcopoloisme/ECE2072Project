@@ -2,71 +2,50 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 
     // Note: The skeleton you are provided with includes output ports to output the values of the internal registers R0 - R7, for the purpose of test benching. When instantiating the processor to program your DE10-lite, you can leave these ports unused.
 
-    // Declare inputs and outputs:
-	input clk;
-	input rst;
-  
-	input  [8:0] din;
-	output reg [15:0]bus;
-	output [15:0] R0;
-	output [15:0] R1;
-	output [15:0] R2;
-	output [15:0] R3;
-	output [15:0] R4;
-	output [15:0] R5;
-	output [15:0] R6; 
-	output [15:0] R7;
-	output [15:0] HEX;
-  output [15:0] PC; //PC output 
-  
-  reg [15:0] pc_reg; //storing 16 bit program 
+    // Declare inputs and outputs: 
+    //some of these may need to be regs but i think it'll work with wires - marcus 
+	//not 100% sure about the wires/regs might need to be changed -saanvi 
+	
+	input wire clk,
+    input wire rst,
+    input wire enable,
+    input wire [8:0] din,
 
-  assign PC = pc_reg; //pc's register's value available at the output
+    output wire [15:0] bus,
+	output wire [15:0] R0,
+    output wire [15:0] R1,
+    output wire [15:0] R2,
+    output wire [15:0] R3,
+    output wire [15:0] R4,
+    output wire [15:0] R5,
+    output wire [15:0] R6,
+    output wire [15:0] R7,
+    output wire [15:0] HEX,
+    output wire [15:0] PC 
 
-  //xounter control
-  reg pc_inc;
-  reg pc_load;
-
-  //instruction and immediate control 
-  // reg branch_taken; //should a bez branch be taken 
-
-  //Branch instruction fields register and ofset information 
-  reg [2:0] branch_Rx;
-  reg [15:0] branch_offset;
-
-    
-	//some of these may need to be regs but i think it'll work with wires
-	wire R0_in;
-	wire R1_in;
-	wire R2_in;
-	wire R3_in;
-	wire R4_in;
-	wire R5_in;
-	wire R6_in;
-	wire R7_in;
+	reg R0_in, R1_in, R2_in, R3_in;
+    reg R4_in, R5_in, R6_in, R7_in;
+	
 	
   	wire[15:0] signExtDin;
 	
-	wire [3:0] bus_control;
+	wire [3:0] bus_control; //idk bus or wire 
 	
-	wire A_in;	
+	reg A_in;	
 	wire [15:0] A_out;
 	
-	wire [2:0] ALU_OP;
+	reg [2:0] ALU_OP;
 	wire [15:0] ALU_out;
 	
-	wire [15:0] G_in;
+	reg G_in;
 	wire [15:0] G_out;
 	
-	wire IR_in;
+	reg IR_in;
 	wire [8:0] CU_in;
 	wire opcode;
 	
-	wire enable;
-	wire [3:0] tick;
-	
-	wire H_in;
-	wire H_out;
+	reg H_in;
+	wire [15:0] H_out; //changed it to 16 bits 
 	
 	wire [2:0] Rx;
 	wire [2:0] Ry;
@@ -85,6 +64,20 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 	wire [7:0] sevenSeg5;
 	
     // instantiate registers:
+
+    //Program counter module 
+	
+	PC_counter PC_inst(
+        .clk(clk),
+        .rst(rst),
+        .pc_inc(pc_inc),
+        .pc_load(pc_load),
+        .branch_target(branch_target),
+        .PC(PC)
+    );
+
+	//other registers 
+	
     shift_register #(.N(16)) Reg0 (
         .clk  (clk), 
         .rst  (rst), 
@@ -165,7 +158,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
         .Q    (G_out)
     );
     
-	 	 shift_register #(.N(9)) IR (
+	  shift_register #(.N(9)) IR (
         .clk  (clk), 
         .rst  (rst), 
        .data_in (din),
@@ -224,7 +217,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 			.result (ALU_out)
 	);
     
-    //instantiate tick counter:
+    //task 4 tick counter specific 
     
 	 tick_FSM_task4 inst3 (
 			.enable (enable),
@@ -564,7 +557,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 								end
 							endcase
 					 end
-            4'b00100000:
+            8'b00100000:
                 begin
 					case (CU_in[8:6])
 							3'b000: // display a register's content on hex as a decimal task 3
@@ -668,7 +661,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
 						endcase
 				end
 
-			4'b01000000:
+			8'b01000000:
 				begin
 					pc_inc <=1'b1;
 					bus_control <= 4'd10;
