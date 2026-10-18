@@ -1,5 +1,3 @@
-// Code your testbench here
-// or browse Examples
 
 `timescale 1ns/1ps
 
@@ -58,7 +56,7 @@ initial clk = 1'b0;
 always #5 clk = ~clk;
 
 
-// Four-tick instruction
+// 4 tick insruction 
 task run_instruction;
     input [2:0] opcode;
     input [2:0] rx;
