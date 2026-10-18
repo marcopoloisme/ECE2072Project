@@ -23,6 +23,7 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 	output [7:0]  sevenSeg4;
 	output [7:0]  sevenSeg5;
 	output [15:0] PC; //PC output 
+	
 
 
    
@@ -63,6 +64,18 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 	wire [8:0] CU_in;
 	//xounter control
    reg pc_inc;
+
+	wire [15:0] rx_val;
+	assign rx_val = (CU_in[5:3] == 3'd0) ? R0 :
+	                (CU_in[5:3] == 3'd1) ? R1 :
+	                (CU_in[5:3] == 3'd2) ? R2 :
+	                (CU_in[5:3] == 3'd3) ? R3 :
+	                (CU_in[5:3] == 3'd4) ? R4 :
+	                (CU_in[5:3] == 3'd5) ? R5 :
+	                (CU_in[5:3] == 3'd6) ? R6 : R7;
+
+	wire branch_taken;
+	assign branch_taken = (CU_in[8:6] == 3'b110) && (rx_val == 16'b0);
 
 	
     // instantiate registers:
@@ -201,7 +214,7 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
     
     //instantiate tick counter:
     
-	 tick_FSM inst3 (
+	 tick_FSM #(.NUM_TICKS(8)) inst3 (
 			.enable (enable),
 			.clk (clk),
 			.rst (rst),
@@ -277,7 +290,7 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 		.X (sevenSeg5)
 		);
 		
-  always @(posedge clk) begin
+  always @(*) begin
 	// TODO: Turn off all control signals:
 		IR_in <= 1'b0;
 		R0_in <= 1'b0;
@@ -301,22 +314,22 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
         // TODO: Turn on specific control signals based on current tick:
         case (tick)
             8'b00000001:
-                begin
-                   IR_in  <= 1'b1;
-                end
-            8'b00000010: 
-				begin
-					pc_inc <=1'b1;				
-				end
-            8'b00000100: 
-				begin
-					pc_in <=1'b1;
-					bus_control <= 4'd11;
-				end
+					begin
+						IR_in  <= 1'b1;
+					end
 
+            8'b00000010: 
+					begin
+						pc_inc <=1'b1;				
+					end
+            8'b00000100: 
+					begin
+						pc_in <=1'b1;
+						bus_control <= 4'd11;
+					end
             8'b00001000: 
  				begin
-                    case (CU_in[8:6])
+					case (CU_in[8:6])
 						3'b000: // display a register's content on hex as a decimal task 3
 							begin
 								H_in <= 1'b1;
@@ -396,56 +409,10 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 						
 						3'b110: //bez
 							begin
-								case (CU_in[5:3])
-									3'd0: 
-										if (R0 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd1: 
-										if (R1 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd2: 
-										if (R2 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd3: 
-										if (R3 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd4: 
-										if (R4 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd5: 
-										if (R5 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd6: 
-										if (R6 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									3'd7:	
-										if (R7 == 16'b0)
-											begin
-												A_in <= 1'b1;
-												bus_control <= 4'd9;
-											end
-									endcase
+								if (branch_taken) begin
+									A_in <= 1'b1;
+									bus_control <= 4'd9;
+								end
 							end
 							
 						3'b111:
@@ -566,64 +533,11 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 								
 								3'b110: //bez
 									begin
-										case (CU_in[5:3])
-											3'd0: 
-												if (R0 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd1: 
-												if (R1 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd2: 
-												if (R2 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd3: 
-												if (R3 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd4: 
-												if (R4 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd5: 
-												if (R5 == 16'b0)
-													begin										
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd6: 
-												if (R6 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											3'd7:	
-												if (R7 == 16'b0)
-													begin
-														bus_control <= 4'd10;
-														ALU_OP <= 3'b001;
-														G_in <= 1'b1;
-													end
-											endcase
+										if (branch_taken) begin
+											bus_control <= 4'd10;
+											ALU_OP <= 3'b100;
+											G_in <= 1'b1;
+										end
 									end
 									
 								3'b111: //move an intermediate into a register
@@ -724,56 +638,10 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 							
 							3'b110: //bez
 								begin
-									case (CU_in[5:3])
-										3'd0: 
-											if (R0 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd1: 
-											if (R1 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd2: 
-											if (R2 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd3: 
-											if (R3 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd4: 
-											if (R4 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd5: 
-											if (R5 == 16'b0)
-												begin										
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd6: 
-											if (R6 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-										3'd7:	
-											if (R7 == 16'b0)
-												begin
-													bus_control <= 4'd8;
-													pc_in <= 1'b1;
-												end
-									endcase
+									if (branch_taken) begin
+										bus_control <= 4'd8;
+										pc_in <= 1'b1;
+									end
 								end
 								
 							3'b111: //move an intermediate into a register
@@ -792,8 +660,10 @@ module proc_memory(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, se
 				end
          8'b10000000: 
 				begin
-					pc_in <=1'b1;
-					bus_control <= 4'd11;
+					if (!branch_taken) begin
+						pc_in <= 1'b1;
+						bus_control <= 4'd11;
+					end
 				end
 
             default:

@@ -56,10 +56,11 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	wire [15:0] G_out;
 	wire [15:0] H_out;
 	wire [15:0] ALU_out;
-	wire [7:0] tick;
+	wire [3:0] tick;
 	wire [3:0] tickOutput;
 	wire [15:0] unsignOut;
 	wire [19:0] sevenSeg;
+	wire [15:0] PC;
 	wire negative;
 	
 	// controls
@@ -159,7 +160,13 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
         .Q    (CU_in)
     );
 
-
+   register_n #(.N(16)) AddressReg (
+        .data_in(bus),
+        .r_in(pc_in),
+        .clk(clk),
+        .Q(PC),
+        .rst(rst)
+    );
 	 
 	register_n #(.N(16)) H (
         .clk  (clk), 
@@ -183,7 +190,6 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 			.R7 (R7),
 			.G (G_out),
 			.PC (PC),
-			.Add1 (ADD1),
 			.sel (bus_control), 
 			.Bus (bus)
 		);
@@ -228,7 +234,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 	
 
 	tick_to_binary inst7 (
-		.tick (tick),
+		.tick ({4'b0000, tick}),
 		.result (tickOutput)
 		);
 	
@@ -489,6 +495,7 @@ module proc_extension(clk, rst,enable, din, bus, R0, R1, R2, R3, R4, R5, R6, R7,
 											3'd7:	bus_control <= 4'd7;
 										endcase
 										ALU_OP <= 3'b011;
+										G_in <= 1'b1;
 									end
 									
 								3'b111: //move an intermediate into a register

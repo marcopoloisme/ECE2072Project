@@ -19,30 +19,39 @@ endmodule
 
 
 //Tick counter code 
-module tick_FSM(
+module tick_FSM #(parameter NUM_TICKS = 4) (
     input enable,
     input rst,
     input clk,
-    output reg [7:0] tick
+    output reg [NUM_TICKS-1:0] tick
 );
 
-	
 	always @(posedge clk) begin //clock ticking 
 		if (rst) begin //check the reset value first, if reset = 1 then set tick to 0001. 
-            tick <= 8'b00000001;
+            tick <= {{(NUM_TICKS-1){1'b0}}, 1'b1};
         end
         else if (enable) begin
-            case (tick)
-                8'b00000001: tick <= 8'b00000010;
-                8'b00000010: tick <= 8'b00000100;
-                8'b00000100: tick <= 8'b00001000;
-                8'b00001000: tick <= 8'b00010000;
-					 8'b00010000: tick <= 8'b00100000;
-					 8'b00100000: tick <= 8'b01000000;
-					 8'b01000000: tick <= 8'b10000000;
-					 8'b10000000: tick <= 8'b00000001;
-                default: tick <= 8'b00000001; //if the tick is an invalid value, it will revert it back to 0001, safety case. 
-            endcase
+            if (NUM_TICKS == 8) begin
+                case (tick)
+                    8'b00000001: tick <= 8'b00000010;
+                    8'b00000010: tick <= 8'b00000100;
+                    8'b00000100: tick <= 8'b00001000;
+                    8'b00001000: tick <= 8'b00010000;
+                    8'b00010000: tick <= 8'b00100000;
+                    8'b00100000: tick <= 8'b01000000;
+                    8'b01000000: tick <= 8'b10000000;
+                    8'b10000000: tick <= 8'b00000001;
+                    default: tick <= 8'b00000001;
+                endcase
+            end else begin
+                case (tick)
+                    4'b0001: tick <= 4'b0010;
+                    4'b0010: tick <= 4'b0100;
+                    4'b0100: tick <= 4'b1000;
+                    4'b1000: tick <= 4'b0001;
+                    default: tick <= 4'b0001;
+                endcase
+            end
         end
     end
 endmodule
@@ -78,7 +87,7 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G,PC, Add1, sel, 
             4'd9: Bus = SignExtDin;
             4'd10:Bus = PC;
             4'd11:Bus = Add1;
-            default: Bus = 16'hXXXX;
+            default: Bus = 16'd0;
         endcase
     end
 
@@ -100,10 +109,15 @@ module alu(
             3'b001: result = input_a + input_b;
             3'b010: result = input_a - input_b;
             3'b011: 
-				if((input_a[15])) //so if the MSB of a = 1, negative number 
-                result = input_b>>-$signed(input_a); //input b will be right shifted by the positive value of whatever a is. 
-                else 
-                result = input_b<<input_a; //if it is a positive value MSB = 0, then left shift. 
+				begin
+					 if ($signed(input_a) < 0) // so if negative number 
+						  result = input_b >> $unsigned(-$signed(input_a));//input b will be right shifted by the positive value of whatever a is. 
+					 else
+						  result = input_b << input_a; 	//if it is a positive value then left shift. 
+				end
+	
+
+            3'b100: result = (input_b + 16'd1) + (input_a << 1); // Task 4 branch target: (PC + 1) + 2*imm 
 
             default: result = 16'b0; //safety result 0
 		  
@@ -169,19 +183,19 @@ always @(*) begin
     for (i = 0; i < N; i = i + 1) begin
 
         if (shift[19:16] >= 5)
-            shift[19:16] = shift[19:16] + 3;
+            shift[19:16] = shift[19:16] + 4'd3;
 
         if (shift[23:20] >= 5)
-            shift[23:20] = shift[23:20] + 3;
+            shift[23:20] = shift[23:20] + 4'd3;
 
         if (shift[27:24] >= 5)
-            shift[27:24] = shift[27:24] + 3;
+            shift[27:24] = shift[27:24] + 4'd3;
 
         if (shift[31:28] >= 5)
-            shift[31:28] = shift[31:28] + 3;
+            shift[31:28] = shift[31:28] + 4'd3;
 
         if (shift[35:32] >= 5)
-            shift[35:32] = shift[35:32] + 3;
+            shift[35:32] = shift[35:32] + 4'd3;
 
         shift = shift << 1;
     end
@@ -199,15 +213,15 @@ module tick_to_binary (
 	);
 	always @(*) begin //clock ticking 
 		case (tick)
-			 8'b00000001: result = 4'd0;
-			 8'b00000010: result = 4'd1;
-			 8'b00000100: result = 4'd2;
-			 8'b00001000: result = 4'd3;
-			 8'b00010000: result = 4'd4;
-			 8'b00100000: result = 4'd5;
-			 8'b01000000: result = 4'd6;
-			 8'b10000000: result = 4'd7;
-			 default: result = 4'd0; 
+			 8'b00000001: result = 4'd1;
+			 8'b00000010: result = 4'd2;
+			 8'b00000100: result = 4'd3;
+			 8'b00001000: result = 4'd4;
+			 8'b00010000: result = 4'd5;
+			 8'b00100000: result = 4'd6;
+			 8'b01000000: result = 4'd7;
+			 8'b10000000: result = 4'd8;
+			 default: result = 4'd1; 
 		endcase
 	end
 endmodule
@@ -263,14 +277,14 @@ module PC_increment(
 	
 	always @(*)
 		begin
-			if (enable == 1'b1)
-				begin
-					PC_out = PC_in  + 16'b1;
-				end
-			else
-				begin
-					PC_out = PC_in;
-				end
+				//if (enable == 1'b1)
+				//	begin
+						PC_out = PC_in  + 16'b1;
+				//	end
+				//else
+				//	begin
+				//		PC_out = PC_in;
+				//	end
 		end
 
 endmodule

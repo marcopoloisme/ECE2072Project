@@ -23,11 +23,13 @@ module proc_memory_top_level(SW,KEY,LEDR,HEX0,HEX1,HEX2,HEX3,HEX4,HEX5, CLOCK_50
 	 
 	 assign clk10 = counter[21];
 	 
-	wire enable  		= SW[9]; 
+	
+	wire enable = SW[9]; 
 	wire [8:0] DIN;
 	wire [15:0] PC;
 	
 	wire reset 	= ~KEY[0];
+	//assign clk10 = ~KEY[1];
 	
 	wire [15:0] bus;
 	assign  LEDR = bus[9:0];
@@ -44,7 +46,7 @@ module proc_memory_top_level(SW,KEY,LEDR,HEX0,HEX1,HEX2,HEX3,HEX4,HEX5, CLOCK_50
 
 	addressMemory rom_inst (
 		.address (PC),
-		.clock   (clk10),
+		.clock   (CLOCK_50),
 		.q       (DIN)
 	);
 	
