@@ -226,7 +226,7 @@ module proc_memory(clk, rst, din, bus, R0, R1, R2, R3, R4, R5, R6, R7, HEX, PC);
     
     //instantiate tick counter:
     
-	 tick_FSM inst3 (
+	 tick_FSM_task4 inst3 (
 			.enable (enable),
 			.clk (clk),
 			.rst (rst),
