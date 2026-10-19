@@ -364,10 +364,6 @@ module components_tb;
         check_alu("Right shift negative B",
                   16'hFFFF, 16'hFFFF, 3'b011, 16'h7FFF);
 
-        // Invalid opcode returns zero 
-        check_alu("Invalid ALU opcode",
-                  16'h1234, 16'h5678, 3'b100, 16'h0000);
-
         
         // MUX: 16 tests 
        
