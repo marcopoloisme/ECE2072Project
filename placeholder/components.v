@@ -1,0 +1,293 @@
+/*
+Monash University ECE2072: Assignment 
+This file contains Verilog code to implement individual components to be used in 
+    the CPU.
+
+Please enter your name and student ID:
+
+Marcus van Maanen 34956158
+Saanvi Kaushik Joshi 31240902 
+*/
+//Sign extender code 
+module sign_extend(
+	input [8:0] in, //9 bit input received 
+	output [15:0] ext //processors data bus is 16 bit wide 
+);
+
+	assign ext = {{7{in[8]}}, in}; //[15:9] will be the in[8] value repeated 7 times and then concatenation with the in. 
+endmodule
+
+
+//Tick counter code 
+module tick_FSM #(parameter NUM_TICKS = 4) (
+    input enable,
+    input rst,
+    input clk,
+    output reg [NUM_TICKS-1:0] tick
+);
+
+	always @(posedge clk) begin //clock ticking 
+		if (rst) begin //check the reset value first, if reset = 1 then set tick to 0001. 
+            tick <= {{(NUM_TICKS-1){1'b0}}, 1'b1};
+        end
+        else if (enable) begin
+            if (NUM_TICKS == 8) begin
+                case (tick)
+                    8'b00000001: tick <= 8'b00000010;
+                    8'b00000010: tick <= 8'b00000100;
+                    8'b00000100: tick <= 8'b00001000;
+                    8'b00001000: tick <= 8'b00010000;
+                    8'b00010000: tick <= 8'b00100000;
+                    8'b00100000: tick <= 8'b01000000;
+                    8'b01000000: tick <= 8'b10000000;
+                    8'b10000000: tick <= 8'b00000001;
+                    default: tick <= 8'b00000001;
+                endcase
+            end else begin
+                case (tick)
+                    4'b0001: tick <= 4'b0010;
+                    4'b0010: tick <= 4'b0100;
+                    4'b0100: tick <= 4'b1000;
+                    4'b1000: tick <= 4'b0001;
+                    default: tick <= 4'b0001;
+                endcase
+            end
+        end
+    end
+endmodule
+
+module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G,PC, Add1, sel, Bus);
+    input  wire [15:0] SignExtDin;
+    input  wire [15:0] R0;
+    input  wire [15:0] R1;
+    input  wire [15:0] R2;
+    input  wire [15:0] R3;
+    input  wire [15:0] R4;
+    input  wire [15:0] R5;
+    input  wire [15:0] R6;
+    input  wire [15:0] R7;
+    input  wire [15:0] G;
+    input  wire [15:0] PC;
+    input  wire [15:0] Add1;
+    input  wire [3:0]  sel;
+    output reg  [15:0] Bus;
+
+
+    always @(*) begin
+        case (sel)
+            4'd0: Bus = R0;
+            4'd1: Bus = R1;
+            4'd2: Bus = R2;
+            4'd3: Bus = R3;
+            4'd4: Bus = R4;
+            4'd5: Bus = R5;
+            4'd6: Bus = R6;
+            4'd7: Bus = R7;
+            4'd8: Bus = G;
+            4'd9: Bus = SignExtDin;
+            4'd10:Bus = PC;
+            4'd11:Bus = Add1;
+            default: Bus = 16'd0;
+        endcase
+    end
+
+endmodule
+
+//ALU code: 
+
+module alu(
+	input [15:0] input_a,
+	input [15:0] input_b,
+	input [2:0] alu_op,
+    output reg [15:0] result
+); 
+	always @(*)begin 
+
+
+      case (alu_op)
+            3'b000: result = input_a * input_b;
+            3'b001: result = input_a + input_b;
+            3'b010: result = input_a - input_b;
+            3'b011: 
+				begin
+					 if ($signed(input_a) < 0) // so if negative number 
+						  result = input_b >> $unsigned(-$signed(input_a));//input b will be right shifted by the positive value of whatever a is. 
+					 else
+						  result = input_b << input_a; 	//if it is a positive value then left shift. 
+				end
+	
+
+            3'b100: result = (input_b + 16'd1) + (input_a << 1); // Task 4 branch target: (PC + 1) + 2*imm 
+
+            default: result = 16'b0; //safety result 0
+		  
+        endcase
+    end
+	 
+endmodule
+
+
+
+
+
+module register_n(data_in, r_in, clk, Q, rst);
+
+
+	// To set parameter N during instantiation, you can use:
+	// register_n #(.N(num_bits)) reg_IR(.....), 
+	// where num_bits is how many bits you want to set N to
+	// and "..." is your usual input/output signals
+	
+	parameter N = 16;
+
+	/* 
+	 * This module implements registers that will be used in the processor.
+	 */
+	// TODO: Declare inputs, outputs, and parameter:
+	input wire [N-1:0] data_in;
+	input wire r_in;
+	input wire clk;
+	input wire rst;
+	output reg [N-1:0] Q;
+	
+	always @(posedge clk) begin 
+		if (rst) begin
+		Q <= 'd0;
+		end 
+		else if (r_in) begin
+		Q <= data_in;
+		end
+	end
+endmodule 
+
+//task 3 modules
+
+module Binary_to_BCD
+#(
+    parameter N = 16,
+    parameter N2 = 5
+)
+(
+    input  [N-1:0] data_in,
+    output reg [N2*4-1:0] result
+);
+
+integer i;
+reg [35:0] shift;
+
+always @(*) begin
+
+    shift = 0;
+    shift[N-1:0] = data_in;
+
+    for (i = 0; i < N; i = i + 1) begin
+
+        if (shift[19:16] >= 5)
+            shift[19:16] = shift[19:16] + 4'd3;
+
+        if (shift[23:20] >= 5)
+            shift[23:20] = shift[23:20] + 4'd3;
+
+        if (shift[27:24] >= 5)
+            shift[27:24] = shift[27:24] + 4'd3;
+
+        if (shift[31:28] >= 5)
+            shift[31:28] = shift[31:28] + 4'd3;
+
+        if (shift[35:32] >= 5)
+            shift[35:32] = shift[35:32] + 4'd3;
+
+        shift = shift << 1;
+    end
+
+    result = shift[35:16];
+
+end
+
+endmodule
+
+
+module tick_to_binary (
+	input [7:0] tick,
+	output reg [3:0] result
+	);
+	always @(*) begin //clock ticking 
+		case (tick)
+			 8'b00000001: result = 4'd1;
+			 8'b00000010: result = 4'd2;
+			 8'b00000100: result = 4'd3;
+			 8'b00001000: result = 4'd4;
+			 8'b00010000: result = 4'd5;
+			 8'b00100000: result = 4'd6;
+			 8'b01000000: result = 4'd7;
+			 8'b10000000: result = 4'd8;
+			 default: result = 4'd1; 
+		endcase
+	end
+endmodule
+	
+
+
+module twos_complement 
+	#(parameter N = 16)
+	
+	(
+	input [N-1:0] data_in,
+	output reg negative,
+	output reg [N-1:0] data_out
+	);
+	
+	always @(*) begin
+	
+		negative = data_in[N-1];
+		
+    if (negative)
+        data_out = ~(data_in - 1'b1);
+    else
+        data_out = data_in;
+	 end
+endmodule
+	
+
+module BCD (
+    input [3:0] data,
+	 input negative,
+    output [7:0] X
+);
+
+assign X[0] = ~(data[1]|data[3]|~(data[2]^data[0]));
+assign X[1] = ~(data[3]|~data[2]|~(data[0]^data[1]));
+assign X[2] = data[1]&~data[2]&~data[3]&~data[0];
+assign X[3] = ~((~data[1]&~data[0]&~data[2])|(~data[3]&data[2]&(data[0]^data[1]))|(~data[2]&~data[3]&data[1]));
+assign X[4] = ~((~data[0] &~data[1]&~data[2])| data[1]&~data[0]);
+assign X[5] = ~((~data[0] &~data[1])|(data[0]^data[1])&(data[2]^data[3]));
+assign X[6] = ~((data[1]&~data[2]&~data[3])|~data[1]&(data[2]^data[3])|data[1]&~data[0]);
+assign X[7] = ~negative;
+
+endmodule
+
+//task 4 modules
+
+module PC_increment(
+	input [15:0] PC_in,
+	input enable,
+	output reg [15:0] PC_out
+	);
+	
+	
+	always @(*)
+		begin
+				//if (enable == 1'b1)
+				//	begin
+						PC_out = PC_in  + 16'b1;
+				//	end
+				//else
+				//	begin
+				//		PC_out = PC_in;
+				//	end
+		end
+
+endmodule
+
+
+
