@@ -256,7 +256,7 @@ module components_tb;
         $display("--- TICK FSM ---");
 
         // Reset the FSM
-        @(negedge clk);
+       @(negedge clk); // tells the clk to fall onto 0 from 1 before starting. 
         tick_rst = 1;
         tick_enable = 0;
 
@@ -299,7 +299,7 @@ module components_tb;
 
         @(posedge clk);
         #1;
-        check_tick("Re-enabled FSM advances", tick, 4'b0010);
+       check_tick("again enabled FSM advances", tick, 4'b0010);
 
         // Reset should take priority over enable
         @(negedge clk);
